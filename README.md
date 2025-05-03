@@ -61,7 +61,6 @@ VeganIpsum({
   random: Math.random,
   suffix: "\n",
   units: "sentences", // "words", "sentences", or "paragraphs"
-  words: ["plant-based", "cruelty-free", "compassion", ...] // Vegan-themed words
 });
 ```
 
