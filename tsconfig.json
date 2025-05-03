@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    // Specify ECMAScript target version
+    "target": "esnext",
+    // Specify module code generation
+    "module": "commonjs",
+    // Generate .d.ts files
+    "declaration": true,
+    // Redirect output structure to the 'lib' directory
+    "outDir": "lib",
+    // Enable all strict type-checking options
+    "strict": true,
+    // Disable 'alwaysStrict' to allow non-strict mode files
+    "alwaysStrict": false,
+    // Allow default imports from modules with no default export
+    "allowSyntheticDefaultImports": true,
+    // Enable interoperability between CommonJS and ES Modules
+    "esModuleInterop": true,
+    // Specify directory for declaration files
+    "declarationDir": "types",
+    // Allow importing JSON files as modules
+    "resolveJsonModule": true,
+    // Use 'unknown' instead of 'any' for catch variables
+    "useUnknownInCatchVariables": false,
+    // Enable incremental compilation for faster builds
+    "incremental": true,
+    // Enable source maps for debugging
+    "sourceMap": true,
+    // Include type definitions from 'node_modules/@types'
+    "typeRoots": ["./node_modules/@types"],
+    // Enable strict null checks
+    "strictNullChecks": true
+  },
+  "include": [
+    // Include all TypeScript files in 'src' and 'test' directories
+    "src/**/*",
+    "test/**/*",
+    // Include configuration files with '.config.mjs' extension
+    "*.config.mjs"
+  ],
+  "exclude": [
+    // Exclude 'node_modules' directory
+    "node_modules",
+    // Exclude test files from compilation
+    "**/*.test.ts"
+  ]
+}
