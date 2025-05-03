@@ -2,13 +2,13 @@
 
 🌱 **Vegan Ipsum – Ethical Placeholder Text Generator** 🌱
 
-`vegan-ipsum` is a JavaScript module for generating vegan-themed placeholder text. Inspired by the popular [`lorem-ipsum`](https://github.com/knicklabs/lorem-ipsum) project, this tool is ideal for designers, developers, and creators who want ethically themed dummy text with a compassionate twist.
+`vegan-ipsum` is a JavaScript module for generating vegan-themed placeholder text. Inspired by the popular [`lorem-ipsum`](https://github.com/knicklabs/lorem-ipsum.js) project, this tool is ideal for designers, developers, and creators who want ethically themed dummy text with a compassionate twist.
 
 Whether you’re building a vegan blog, animal rights project, or simply want to replace “lorem ipsum” with meaningful filler, `vegan-ipsum` is for you.
 
 Compatible with **Node.js**, **browsers**, and **React Native**.
 
-> 🙏 Thanks to [`lorem-ipsum`](https://github.com/knicklabs/lorem-ipsum) by Nickolas Kenyeres for the original work we’ve lovingly adapted from.
+> 🙏 Thanks to [`lorem-ipsum`](https://github.com/knicklabs/lorem-ipsum.js) by Nickolas Kenyeres for the original work we’ve lovingly adapted from.
 
 ---
 
