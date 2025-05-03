@@ -1,0 +1,30 @@
+# Root EditorConfig file to maintain consistent coding style across editors and IDEs
+root=true
+
+# Default settings for all files
+[*]
+charset=utf-8
+end_of_line=lf
+indent_style=space
+indent_size=2
+insert_final_newline=true
+trim_trailing_whitespace=true
+
+# Override for text files (preserve trailing whitespace)
+[*.txt]
+trim_trailing_whitespace=false
+
+# Override for Markdown, YAML files
+[*.{md,yml}]
+indent_style=space
+indent_size=2
+
+# Override for JSON files
+[*.json]
+indent_style=space
+indent_size=2
+
+# Override for JavaScript, TypeScript, and JSX/TSX files
+[*.{js,mjs,ts}]
+indent_style=space
+indent_size=2
