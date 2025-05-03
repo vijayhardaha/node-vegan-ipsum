@@ -18,9 +18,12 @@ yarn-debug.log*
 yarn-error.log*
 
 # typescript
-types
 *.tsbuildinfo
 
 # environment variables
 .env
 .env.local
+
+# configs
+eslint.config.mjs
+tsconfig.json
