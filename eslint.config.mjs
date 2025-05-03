@@ -24,7 +24,15 @@ const compat = new FlatCompat({
 
 export default defineConfig([
   // Define global ignore patterns for files and directories
-  globalIgnores(["**/.git/", "**/node_modules/", "**/dist/", "**/*.log", "**/*.tsbuildinfo"]),
+  globalIgnores([
+    "**/.git/",
+    "**/node_modules/",
+    "**/dist/",
+    "**/coverage/",
+    "**/types/",
+    "**/*.log",
+    "**/*.tsbuildinfo",
+  ]),
 
   // Specify file extensions to lint
   { files: ["**/*.{js,ts,mjs}"] },
