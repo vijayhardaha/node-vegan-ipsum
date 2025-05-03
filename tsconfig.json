@@ -39,8 +39,10 @@
     "*.config.mjs"
   ],
   "exclude": [
-    // Exclude 'node_modules' directory
+    // Exclude 'node_modules', 'coverage', 'types' directories
     "node_modules",
+    "coverage",
+    "types",
     // Exclude test files from compilation
     "**/*.test.ts"
   ]
