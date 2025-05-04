@@ -22,14 +22,6 @@
     "resolveJsonModule": true,
     // Use 'unknown' instead of 'any' for catch variables
     "useUnknownInCatchVariables": false,
-    // Enable incremental compilation for faster builds
-    "incremental": true,
-    // Enable source maps for debugging
-    "sourceMap": true,
-    // Include type definitions from 'node_modules/@types'
-    "typeRoots": ["./node_modules/@types"],
-    // Enable strict null checks
-    "strictNullChecks": true
   },
   "include": [
     // Include all TypeScript files in 'src' and 'test' directories
@@ -41,8 +33,6 @@
   "exclude": [
     // Exclude 'node_modules', 'coverage', 'types' directories
     "node_modules",
-    "coverage",
-    "types",
     // Exclude test files from compilation
     "**/*.test.ts"
   ]
