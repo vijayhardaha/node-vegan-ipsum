@@ -1,6 +1,6 @@
 {
   "name": "vegan-ipsum",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Generates passages of vegan-themed placeholder text suitable for use in web pages, graphics, and more. Works in the browser, NodeJS, and React Native.",
   "author": "Vijay Hardaha (http://github.com/vijayhardaha)",
   "license": "MIT",
