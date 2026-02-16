@@ -1,4 +1,4 @@
-import { capitalize, makeArrayOfLength, makeArrayOfStrings } from ".";
+import { capitalize, rangeArray, makeArrayOfStrings } from ".";
 
 /**
  * Unit tests for string and array generation utilities.
@@ -38,15 +38,15 @@ describe("strings utilities", () => {
   });
 
   /**
-   * Unit tests for the `makeArrayOfLength` function.
+   * Unit tests for the `rangeArray` function.
    */
-  describe("makeArrayOfLength", () => {
+  describe("rangeArray", () => {
     /**
      * Test case: When no argument is provided, it should return an empty array.
      */
     test("returns empty array when no argument provided", () => {
       // Expect the function to return an empty array when no argument is passed
-      expect(makeArrayOfLength()).toEqual([]);
+      expect(rangeArray()).toEqual([]);
     });
 
     /**
@@ -56,7 +56,7 @@ describe("strings utilities", () => {
       const sizes = [1, 5, 7, 100];
       sizes.forEach((size, idx) => {
         // Expect the length of the returned array to match the specified size
-        expect(makeArrayOfLength(size).length).toEqual(sizes[idx]);
+        expect(rangeArray(size).length).toEqual(sizes[idx]);
       });
     });
 
@@ -64,7 +64,7 @@ describe("strings utilities", () => {
      * Test case: Each element in the array should be equal to its index.
      */
     test("each element equals its index", () => {
-      const results = makeArrayOfLength(5);
+      const results = rangeArray(5);
       results.forEach((result, index) => {
         // Expect each element to equal its index
         expect(result).toEqual(index);

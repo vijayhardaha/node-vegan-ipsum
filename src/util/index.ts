@@ -1,4 +1,4 @@
 import { isNode, isReactNative, isWindows } from "./env";
-import { capitalize, makeArrayOfLength, makeArrayOfStrings } from "./strings";
+import { capitalize, rangeArray, makeArrayOfStrings } from "./strings";
 
-export { capitalize, isNode, isReactNative, isWindows, makeArrayOfLength, makeArrayOfStrings };
+export { capitalize, isNode, isReactNative, isWindows, rangeArray, makeArrayOfStrings };

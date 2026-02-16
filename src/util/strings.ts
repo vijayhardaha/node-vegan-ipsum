@@ -15,7 +15,7 @@ export const capitalize = (str: string): string => {
  * @param {number} length - The desired length of the array. Defaults to 0.
  * @returns {number[]} An array of indexes from 0 to `length - 1`.
  */
-export const makeArrayOfLength = (length: number = 0): number[] => {
+export const rangeArray = (length: number = 0): number[] => {
   return [...Array(length)].map((_: unknown, index: number): number => index);
 };
 
@@ -27,8 +27,8 @@ export const makeArrayOfLength = (length: number = 0): number[] => {
  * @returns {string[]} An array of strings of the specified length.
  */
 export const makeArrayOfStrings = (length: number, makeString: () => string): string[] => {
-  const arr = makeArrayOfLength(length);
+  const arr = rangeArray(length);
   return arr.map(() => makeString());
 };
 
-export default { capitalize, makeArrayOfLength, makeArrayOfStrings };
+export default { capitalize, rangeArray, makeArrayOfStrings };

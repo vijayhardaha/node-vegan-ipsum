@@ -1,5 +1,5 @@
 import { WORDS } from "../constants/words";
-import { capitalize, makeArrayOfLength } from "../util";
+import { capitalize, rangeArray } from "../util";
 
 /**
  * Represents a range with minimum and maximum bounds.
@@ -114,7 +114,7 @@ class Generator {
   public generateRandomWords(num?: number): string {
     const { min, max } = this.wordsPerSentence;
     const length = num || this.generateRandomInteger(min, max);
-    return makeArrayOfLength(length)
+    return rangeArray(length)
       .reduce((accumulator: string): string => {
         return `${this.pluckRandomWord()} ${accumulator}`;
       }, "")
@@ -140,7 +140,7 @@ class Generator {
   public generateRandomParagraph(num?: number): string {
     const { min, max } = this.sentencesPerParagraph;
     const length = num || this.generateRandomInteger(min, max);
-    return makeArrayOfLength(length)
+    return rangeArray(length)
       .reduce((accumulator: string): string => {
         return `${this.generateRandomSentence()} ${accumulator}`;
       }, "")
