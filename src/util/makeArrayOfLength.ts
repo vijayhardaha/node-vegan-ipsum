@@ -5,7 +5,7 @@
  * @returns {number[]} An array of indexes from 0 to `length - 1`.
  */
 const makeArrayOfLength = (length: number = 0): number[] => {
-  return Array.apply(null, Array(length)).map((item: any, index: number): number => index);
+  return [...Array(length)].map((_: unknown, index: number): number => index);
 };
 
 export default makeArrayOfLength;
