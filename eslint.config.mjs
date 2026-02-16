@@ -19,7 +19,6 @@ const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({
   baseDirectory: __dirname,
   recommendedConfig: js.configs.recommended, // Use recommended JavaScript rules
-  allConfig: js.configs.all, // Use all JavaScript rules
 });
 
 export default defineConfig([
@@ -38,7 +37,7 @@ export default defineConfig([
   { files: ["**/*.{js,ts,mjs}"] },
 
   {
-    // Extend recommended ESLint configurations
+    // Include compat-provided base configs (preserve precedence)
     ...compat.extends(
       "eslint:recommended", // Base recommended rules
       "plugin:@typescript-eslint/recommended", // TypeScript-specific rules
@@ -50,6 +49,19 @@ export default defineConfig([
       "@typescript-eslint": fixupPluginRules(tsPlugin), // TypeScript linting rules
       import: fixupPluginRules(importPlugin), // Import/export linting rules
       prettier: fixupPluginRules(prettier), // Prettier formatting rules
+    },
+
+    // Configure resolver settings so `eslint-plugin-import` understands `@` aliases
+    settings: {
+      "import/resolver": {
+        typescript: {
+          project: path.resolve(__dirname, "tsconfig.json"),
+        },
+        alias: {
+          map: [["@", path.resolve(__dirname, "src")]],
+          extensions: [".ts", ".js", ".mjs", ".json"],
+        },
+      },
     },
 
     // Configure language options
