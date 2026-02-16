@@ -1,8 +1,10 @@
 {
   "git": {
-    "commitMessage": "build(release): bump version to %s",
+    "commitMessage": "build(release): bump version to ${version}",
     "requireUpstream": false,
-    "requireCleanWorkingDir": false,
-    "tagName": "v%s"
+    "requireCleanWorkingDir": false
+  },
+  "github": {
+    "releaseName": "Release ${version}"
   }
 }
