@@ -31,12 +31,19 @@
     "release:dry": "npm run build && release-it --dry-run"
   },
   "keywords": [
-    "vegan",
+    "cli",
+    "filler",
+    "generator",
     "ipsum",
+    "lorem",
+    "lorem-ipsum",
+    "node",
     "placeholder",
-    "text",
+    "placeholder-text",
     "plant-based",
-    "filler"
+    "typescript",
+    "vegan",
+    "vegan-ipsum"
   ],
   "engines": {
     "node": ">= 8.x",
