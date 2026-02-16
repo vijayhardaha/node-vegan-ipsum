@@ -72,7 +72,7 @@ describe("veganIpsum", () => {
    * Tests that `veganIpsum` returns an empty string when an invalid `units` parameter is provided.
    */
   test("Should return an empty string for invalid units", () => {
-    // @ts-ignore
+    // @ts-expect-error Testing invalid units
     expect(veganIpsum({ count: 7, units: "unknown" })).toEqual("");
   });
 });

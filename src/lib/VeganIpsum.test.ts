@@ -24,13 +24,13 @@ describe("VeganIpsum", () => {
    */
   test("Should throw an error if instantiated with an unsupported format", () => {
     try {
-      // @ts-ignore - Intentionally passing an invalid format
+      // @ts-expect-error - Intentionally passing an invalid format
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const lorem = new VeganIpsum({}, "blade");
     } catch (error) {
       // Expect an error to be thrown with a specific message
       expect(error).toBeDefined();
-      expect(error.message).toEqual(
+      expect((error as Error).message).toEqual(
         `blade is an invalid format. Please use ${FORMATS.join(" or ")}.`
       );
     }
