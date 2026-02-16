@@ -7,15 +7,14 @@ describe("isReactNative", () => {
   /**
    * Cache the original `navigator` object to restore it after each test.
    */
-  // @ts-ignore
   const cachedNavigator: typeof global.navigator = global.navigator;
 
   /**
    * Helper function to mock the `navigator` object.
    * @param obj - The object to set as the global `navigator`.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const setNavigator = (obj: any): void => {
-    // @ts-ignore
     global.navigator = obj;
   };
 
