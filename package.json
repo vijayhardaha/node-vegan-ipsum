@@ -8,6 +8,10 @@
     "type": "git",
     "url": "git://github.com/vijayhardaha/node-vegan-ipsum.git"
   },
+  "homepage": "https://github.com/vijayhardaha/node-vegan-ipsum#readme",
+  "bugs": {
+    "url": "https://github.com/vijayhardaha/node-vegan-ipsum/issues"
+  },
   "main": "dist/index",
   "bin": {
     "vegan-ipsum": "dist/bin/vegan-ipsum.bin.js"
