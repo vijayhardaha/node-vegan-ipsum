@@ -6,6 +6,12 @@
 
 # production
 /docs
+/coverage
+/test
+/tests
+/.vscode
+/.github
+/.git
 #/dist
 
 # misc
@@ -25,5 +31,14 @@ yarn-error.log*
 .env.local
 
 # configs
+.babelrc
+.editorconfig
+.gitignore
+.npmignore
+.prettierignore
+.prettierrc
+.release-it.json
 eslint.config.mjs
 tsconfig.json
+*.zip
+*.tgz
