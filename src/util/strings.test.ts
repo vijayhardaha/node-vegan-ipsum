@@ -1,4 +1,4 @@
-import { capitalize, rangeArray, makeArrayOfStrings } from ".";
+import { capitalize, rangeArray, fillArrayWith } from ".";
 
 /**
  * Unit tests for string and array generation utilities.
@@ -73,9 +73,9 @@ describe("strings utilities", () => {
   });
 
   /**
-   * Unit tests for the `makeArrayOfStrings` function.
+   * Unit tests for the `fillArrayWith` function.
    */
-  describe("makeArrayOfStrings", () => {
+  describe("fillArrayWith", () => {
     /**
      * Helper function to generate a string.
      * @returns A constant string "string".
@@ -87,7 +87,7 @@ describe("strings utilities", () => {
      */
     test("returns empty array when length is 0", () => {
       // Expect an empty array when the length is 0
-      expect(makeArrayOfStrings(0, makeStr)).toEqual([]);
+      expect(fillArrayWith(0, makeStr)).toEqual([]);
     });
 
     /**
@@ -95,7 +95,7 @@ describe("strings utilities", () => {
      * with the generated string repeated the specified number of times.
      */
     test("returns array with repeated generated strings", () => {
-      const results = makeArrayOfStrings(5, makeStr);
+      const results = fillArrayWith(5, makeStr);
       // Expect the array to have a length of 5
       expect(results).toHaveLength(5);
       // Expect each element to equal the generated string

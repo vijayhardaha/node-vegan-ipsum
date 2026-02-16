@@ -1,6 +1,6 @@
 import { FORMAT_HTML, FORMAT_PLAIN, FORMATS, LoremFormat } from "../constants/formats";
 import { LINE_ENDINGS } from "../constants/lineEndings";
-import { isNode, isReactNative, isWindows, makeArrayOfStrings } from "../util";
+import { isNode, isReactNative, isWindows, fillArrayWith } from "../util";
 
 import Generator, { IGeneratorOptions } from "./generator";
 
@@ -97,7 +97,7 @@ class VeganIpsum {
    */
   public generateParagraphs(num: number): string {
     const makeString = this.generator.generateRandomParagraph.bind(this.generator);
-    return this.formatStrings(makeArrayOfStrings(num, makeString)).join(this.getLineEnding());
+    return this.formatStrings(fillArrayWith(num, makeString)).join(this.getLineEnding());
   }
 }
 

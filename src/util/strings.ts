@@ -26,9 +26,9 @@ export const rangeArray = (length: number = 0): number[] => {
  * @param {() => string} makeString - A function that generates a string for each element.
  * @returns {string[]} An array of strings of the specified length.
  */
-export const makeArrayOfStrings = (length: number, makeString: () => string): string[] => {
+export const fillArrayWith = (length: number, makeString: () => string): string[] => {
   const arr = rangeArray(length);
   return arr.map(() => makeString());
 };
 
-export default { capitalize, rangeArray, makeArrayOfStrings };
+export default { capitalize, rangeArray, fillArrayWith };
