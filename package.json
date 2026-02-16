@@ -75,9 +75,7 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.ts",
-      "!src/bin/**/*.ts",
-      "!src/constants/cli.ts",
-      "!src/constants/regex.ts",
+      "!src/bin/**/*.bin.ts",
       "!src/@types/**/*.d.ts"
     ],
     "transform": {
