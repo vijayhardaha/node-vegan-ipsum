@@ -46,8 +46,8 @@
     "vegan-ipsum"
   ],
   "engines": {
-    "node": ">= 8.x",
-    "npm": ">= 5.x"
+    "node": ">= 16.x",
+    "npm": ">= 8.x"
   },
   "devDependencies": {
     "@babel/cli": "^7.27.1",
