@@ -70,8 +70,6 @@ export default defineConfig([
 
       parser: tsParser, // Use TypeScript parser
       parserOptions: {
-        ecmaVersion: "latest", // Use the latest ECMAScript version
-        sourceType: "module", // Enable ES module syntax
         tsconfigRootDir: __dirname, // Set the root directory for the TypeScript config
       },
     },
