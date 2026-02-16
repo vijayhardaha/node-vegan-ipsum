@@ -65,10 +65,6 @@ export default defineConfig([
         ecmaVersion: "latest", // Use the latest ECMAScript version
         sourceType: "module", // Enable ES module syntax
         tsconfigRootDir: __dirname, // Set the root directory for the TypeScript config
-        requireConfigFile: false, // Do not require a separate config file
-        babelOptions: {
-          presets: ["@babel/preset-env", "@babel/preset-typescript"], // Babel presets for transpilation
-        },
       },
     },
 
