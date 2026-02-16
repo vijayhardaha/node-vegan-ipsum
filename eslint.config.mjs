@@ -4,11 +4,9 @@ import { fileURLToPath } from "node:url";
 import { fixupPluginRules } from "@eslint/compat";
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
-import tsPlugin from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 import { defineConfig, globalIgnores } from "eslint/config";
 import importPlugin from "eslint-plugin-import";
-import prettier from "eslint-plugin-prettier";
 import globals from "globals";
 
 // Resolve __dirname and __filename for ES modules
