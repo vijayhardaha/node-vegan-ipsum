@@ -1,4 +1,4 @@
-import { SUPPORTED_PLATFORMS } from "../../constants/platforms";
+import { SUPPORTED_PLATFORMS } from "../../constants";
 import { CANNOT_DETERMINE_PLATFORM } from "../constants/errors";
 
 import { getPlatform } from ".";
@@ -40,7 +40,7 @@ describe("getPlatform", () => {
     } catch (error) {
       // Expect an error to be thrown with a specific message
       expect(error).toBeDefined();
-      expect(error.message).toEqual(CANNOT_DETERMINE_PLATFORM);
+      expect((error as Error).message).toEqual(CANNOT_DETERMINE_PLATFORM);
     }
   });
 

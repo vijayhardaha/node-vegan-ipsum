@@ -1,4 +1,4 @@
-import { SUPPORTED_PLATFORMS } from "../constants/platforms";
+import { SUPPORTED_PLATFORMS } from "../constants";
 
 /**
  * Determines if the current runtime environment is Node.js.

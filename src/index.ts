@@ -1,5 +1,11 @@
-import { LoremFormat, FORMAT_PLAIN } from "./constants/formats";
-import { LoremUnit, UNIT_PARAGRAPHS, UNIT_SENTENCES, UNIT_WORDS } from "./constants/units";
+import {
+  LoremUnit,
+  LoremFormat,
+  FORMAT_PLAIN,
+  UNIT_PARAGRAPHS,
+  UNIT_SENTENCES,
+  UNIT_WORDS,
+} from "./constants";
 import { WORDS } from "./constants/words";
 import { IPrng } from "./lib/generator";
 import VeganIpsum from "./lib/VeganIpsum";

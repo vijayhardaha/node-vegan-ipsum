@@ -1,8 +1,13 @@
 import ProcessHelper from "../test/util/ProcessHelper";
 
-import { LINE_ENDINGS } from "./constants/lineEndings";
-import { SUPPORTED_PLATFORMS } from "./constants/platforms";
-import { LoremUnit, UNIT_PARAGRAPHS, UNIT_SENTENCES, UNIT_WORDS } from "./constants/units";
+import {
+  LoremUnit,
+  LINE_ENDINGS,
+  SUPPORTED_PLATFORMS,
+  UNIT_PARAGRAPHS,
+  UNIT_SENTENCES,
+  UNIT_WORDS,
+} from "./constants";
 
 import { veganIpsum } from ".";
 
@@ -72,7 +77,7 @@ describe("veganIpsum", () => {
    * Tests that `veganIpsum` returns an empty string when an invalid `units` parameter is provided.
    */
   test("Should return an empty string for invalid units", () => {
-    // @ts-expect-error Testing invalid units
+    // @ts-expect-error Testing invalid units input
     expect(veganIpsum({ count: 7, units: "unknown" })).toEqual("");
   });
 });

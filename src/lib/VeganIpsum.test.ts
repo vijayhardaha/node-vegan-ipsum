@@ -1,7 +1,11 @@
 import ProcessHelper from "../../test/util/ProcessHelper";
-import { FORMAT_HTML, FORMAT_PLAIN, FORMATS } from "../constants/formats";
-import { LINE_ENDINGS } from "../constants/lineEndings";
-import { SUPPORTED_PLATFORMS } from "../constants/platforms";
+import {
+  FORMAT_HTML,
+  FORMAT_PLAIN,
+  FORMATS,
+  LINE_ENDINGS,
+  SUPPORTED_PLATFORMS,
+} from "../constants";
 
 import VeganIpsum from "./VeganIpsum";
 

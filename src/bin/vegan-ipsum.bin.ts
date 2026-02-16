@@ -1,8 +1,7 @@
 import { Option, program } from "commander";
 
 import { veganIpsum } from "..";
-import { FORMATS, FORMAT_PLAIN } from "../constants/formats";
-import { REGEX } from "../constants/regex";
+import { FORMATS, FORMAT_PLAIN, REGEX } from "../constants";
 
 import { DESCRIPTION, USAGE } from "./constants/cli";
 import { copyToClipboard, getVersion } from "./util";

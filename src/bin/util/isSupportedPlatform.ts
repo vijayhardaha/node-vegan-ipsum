@@ -1,4 +1,4 @@
-import { SUPPORTED_PLATFORMS } from "../../constants/platforms";
+import { SUPPORTED_PLATFORMS } from "../../constants";
 
 /**
  * Checks if the given platform is supported.

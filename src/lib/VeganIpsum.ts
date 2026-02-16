@@ -1,5 +1,4 @@
-import { FORMAT_HTML, FORMAT_PLAIN, FORMATS, LoremFormat } from "../constants/formats";
-import { LINE_ENDINGS } from "../constants/lineEndings";
+import { FORMAT_HTML, FORMAT_PLAIN, FORMATS, LoremFormat, LINE_ENDINGS } from "../constants";
 import { isNode, isReactNative, isWindows, fillArrayWith } from "../util";
 
 import Generator, { IGeneratorOptions } from "./generator";
