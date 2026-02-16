@@ -1,24 +1,18 @@
-# vegan-ipsum
+# 🌱 Vegan Ipsum – Ethical Placeholder Text Generator
 
-🌱 **Vegan Ipsum – Ethical Placeholder Text Generator** 🌱
+![NPM Version](https://img.shields.io/npm/v/vegan-ipsum?style=flat-square&label=npm%20package) ![Node Current](https://img.shields.io/node/v/vegan-ipsum?style=flat-square&label=node%20version) ![NPM License](https://img.shields.io/npm/l/vegan-ipsum?style=flat-square)
 
-`vegan-ipsum` is a JavaScript module for generating vegan-themed placeholder text. Inspired by the popular [`lorem-ipsum`](https://github.com/knicklabs/lorem-ipsum.js) project, this tool is ideal for designers, developers, and creators who want ethically themed dummy text with a compassionate twist.
+**`vegan-ipsum`** is a JavaScript module that generates vegan-themed placeholder text. It works in Node.js, browsers, and React Native.
 
-Whether you’re building a vegan blog, animal rights project, or simply want to replace “lorem ipsum” with meaningful filler, `vegan-ipsum` is for you.
+Use it for vegan blogs, animal rights projects, or any site where you want meaningful filler text instead of "lorem ipsum."
 
-Compatible with **Node.js**, **browsers**, and **React Native**.
-
-> 🙏 Thanks to [`lorem-ipsum`](https://github.com/knicklabs/lorem-ipsum.js) by Nickolas Kenyeres for the original work we’ve lovingly adapted from.
-
----
+Based on the [`lorem-ipsum`](https://github.com/knicklabs/lorem-ipsum.js) project by Nickolas Kenyeres.
 
 ## Installation
 
 ```bash
 npm i vegan-ipsum
 ```
-
----
 
 ## Using the Class
 
@@ -79,16 +73,22 @@ npm i -g vegan-ipsum
 ```bash
 vegan-ipsum 2 words
 vegan-ipsum 3 sentences
-vegan-ipsum 1 paragraph
+vegan-ipsum 1 paragraphs
 vegan-ipsum 2 paragraphs --copy
 vegan-ipsum 2 paragraphs --format html
 ```
 
 ---
 
+## Project
+
+This package is part of a small ecosystem around vegan-themed placeholder text. Related projects and integrations:
+
+- JSON API: https://veganipsum.vercel.app/json-api
+- VS Code extension: https://veganipsum.vercel.app/vscode-extension
+
+
 ## License
 
-This project is licensed under the [ISC License](./LICENSE).
+This project is licensed under the [MIT License](./LICENSE).
 © 2025 Vijay Hardaha
-
-Based on `lorem-ipsum` by Nickolas Kenyeres – thank you for the foundation and inspiration.
