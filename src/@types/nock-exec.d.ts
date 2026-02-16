@@ -5,6 +5,6 @@
  * @returns {any} The mocked result of the command execution.
  */
 declare module "nock-exec" {
-  function nockExec(command: string): any;
+  function nockExec(command: string): Record<string, unknown>;
   export = nockExec;
 }
