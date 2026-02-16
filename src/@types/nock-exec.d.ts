@@ -5,6 +5,7 @@
  * @returns {any} The mocked result of the command execution.
  */
 declare module "nock-exec" {
-  function nockExec(command: string): Record<string, unknown>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function nockExec(command: string): any;
   export = nockExec;
 }
