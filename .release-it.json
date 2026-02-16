@@ -1,7 +1,8 @@
 {
-  "src": {
+  "git": {
+    "commitMessage": "build(release): bump version to %s",
+    "requireUpstream": false,
+    "requireCleanWorkingDir": false,
     "tagName": "v%s"
-  },
-  "requireCleanWorkingDir": false,
-  "git.requireUpstream": false
+  }
 }
