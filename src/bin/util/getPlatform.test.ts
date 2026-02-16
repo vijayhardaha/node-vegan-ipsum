@@ -1,5 +1,5 @@
 import { SUPPORTED_PLATFORMS } from "../../constants";
-import { CANNOT_DETERMINE_PLATFORM } from "../constants/errors";
+import { CANNOT_DETERMINE_PLATFORM } from "../constants";
 
 import { getPlatform } from ".";
 

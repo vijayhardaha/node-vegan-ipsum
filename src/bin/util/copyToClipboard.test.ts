@@ -3,7 +3,7 @@ import nockExec from "nock-exec";
 
 import ProcessHelper from "../../../test/util/ProcessHelper";
 import { SUPPORTED_PLATFORMS } from "../../constants";
-import { COPY } from "../constants/commands";
+import { COPY } from "../constants";
 
 import { copyToClipboard } from ".";
 

@@ -1,5 +1,5 @@
 import { SUPPORTED_PLATFORMS } from "../../constants";
-import { COPY } from "../constants/commands";
+import { COPY } from "../constants";
 
 /**
  * Retrieves the appropriate copy command for the specified platform.

@@ -1,4 +1,4 @@
-import { CANNOT_DETERMINE_PLATFORM } from "../constants/errors";
+import { CANNOT_DETERMINE_PLATFORM } from "../constants";
 
 /**
  * Retrieves the current process platform.

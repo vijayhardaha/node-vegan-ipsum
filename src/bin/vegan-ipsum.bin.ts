@@ -3,7 +3,7 @@ import { Option, program } from "commander";
 import { veganIpsum } from "..";
 import { FORMATS, FORMAT_PLAIN, REGEX } from "../constants";
 
-import { DESCRIPTION, USAGE } from "./constants/cli";
+import { DESCRIPTION, USAGE } from "./constants";
 import { copyToClipboard, getVersion } from "./util";
 
 /**
