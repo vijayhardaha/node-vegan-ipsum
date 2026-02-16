@@ -36,19 +36,17 @@ export default defineConfig([
   // Specify file extensions to lint
   { files: ["**/*.{js,ts,mjs}"] },
 
-  {
-    // Include compat-provided base configs (preserve precedence)
-    ...compat.extends(
-      "eslint:recommended", // Base recommended rules
-      "plugin:@typescript-eslint/recommended", // TypeScript-specific rules
-      "plugin:prettier/recommended" // Prettier integration
-    )[0],
+  // Include compat-provided base configs (preserve precedence)
+  ...compat.extends(
+    "eslint:recommended", // Base recommended rules
+    "plugin:@typescript-eslint/recommended", // TypeScript-specific rules
+    "plugin:prettier/recommended" // Prettier integration
+  ),
 
+  {
     // Define plugins for additional linting capabilities
     plugins: {
-      "@typescript-eslint": fixupPluginRules(tsPlugin), // TypeScript linting rules
       import: fixupPluginRules(importPlugin), // Import/export linting rules
-      prettier: fixupPluginRules(prettier), // Prettier formatting rules
     },
 
     // Configure resolver settings so `eslint-plugin-import` understands `@` aliases
