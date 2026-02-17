@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented in this file.
 
-## Unreleased (2026-02-17)
+## v1.0.4 (2026-02-17)
 
 - Chore: bump dependencies to latest versions for improved performance and security
 - Chore: enhance testing setup for better coverage and reliability
