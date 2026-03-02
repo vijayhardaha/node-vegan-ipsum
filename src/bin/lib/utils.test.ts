@@ -3,7 +3,7 @@ import fs from "fs";
 import nockExec from "nock-exec";
 import ProcessHelper from "../../../tests/util/ProcessHelper";
 import { SUPPORTED_PLATFORMS } from "../../constants";
-import { COPY, CANNOT_DETERMINE_PLATFORM } from "../constants";
+import { COPY, CANNOT_DETERMINE_PLATFORM } from "./constants";
 
 import {
 	copyToClipboard,
@@ -11,7 +11,7 @@ import {
 	getPlatform,
 	getVersion,
 	isSupportedPlatform,
-} from ".";
+} from "./utils";
 
 // Parse the `package.json` file to retrieve its contents
 const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"));
@@ -120,7 +120,7 @@ describe("bin util functions", () => {
 				}
 			);
 
-			const { copyToClipboard } = await import(".");
+			const { copyToClipboard } = await import("./utils");
 
 			await expect(copyToClipboard("Some string")).rejects.toBe(
 				callbackError

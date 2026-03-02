@@ -2,7 +2,7 @@ import { exec } from "child_process";
 
 import { version } from "../../../package.json";
 import { SUPPORTED_PLATFORMS } from "../../constants";
-import { COPY, CANNOT_DETERMINE_PLATFORM } from "../constants";
+import { COPY, CANNOT_DETERMINE_PLATFORM } from "./constants";
 
 /**
  * Retrieves the current process platform.

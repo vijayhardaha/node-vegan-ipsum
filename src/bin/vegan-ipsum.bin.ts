@@ -3,8 +3,8 @@ import { Option, program } from "commander";
 import { veganIpsum } from "..";
 import { FORMATS, FORMAT_PLAIN, REGEX } from "../constants";
 
-import { DESCRIPTION, USAGE } from "./constants";
-import { copyToClipboard, getVersion } from "./util";
+import { DESCRIPTION, USAGE } from "./lib/constants";
+import { copyToClipboard, getVersion } from "./lib/utils";
 
 /**
  * CLI program for generating vegan ipsum text.
