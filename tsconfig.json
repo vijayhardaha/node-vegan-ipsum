@@ -1,39 +1,40 @@
+// ==============================================================================
+// TSCONFIG — TypeScript Compiler Options
+// ==============================================================================
+// Purpose: Configure TypeScript for strict type-checking and declaration output.
+// Docs: https://www.typescriptlang.org/tsconfig
+// ==============================================================================
+
 {
-	"compilerOptions": {
-		// Specify ECMAScript target version
-		"target": "esnext",
-		// Specify module code generation
-		"module": "nodenext",
-		// Generate .d.ts files
-		"declaration": true,
-		// Redirect output structure to the 'lib' directory
-		"outDir": "lib",
-		// Enable all strict type-checking options
-		"strict": true,
-		// Disable 'alwaysStrict' to allow non-strict mode files
-		"alwaysStrict": false,
-		// Allow default imports from modules with no default export
-		"allowSyntheticDefaultImports": true,
-		// Enable interoperability between CommonJS and ES Modules
-		"esModuleInterop": true,
-		// Specify directory for declaration files
-		"declarationDir": "types",
-		// Allow importing JSON files as modules
-		"resolveJsonModule": true,
-		// Use 'unknown' instead of 'any' for catch variables
-		"useUnknownInCatchVariables": false,
-		// Enable module resolution using Node.js
-		"moduleResolution": "nodenext"
-	},
-	"include": [
-		// Include all TypeScript files in 'src' and 'test' directories
-		"src/**/*",
-		"tests/**/*"
-	],
-	"exclude": [
-		// Exclude 'node_modules', 'coverage', 'types' directories
-		"node_modules",
-		// Exclude test files from compilation
-		"**/*.test.ts"
-	]
+    // ==========================================
+    // TRANSPILE & MODULE TARGETS
+    // ==========================================
+    // Target modern JS runtime features; module is ESM to align with Vite outputs.
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+
+        // ==========================================
+        // TYPE OUTPUT
+        // ==========================================
+        // Emit declaration files into `types/` for consumers.
+        "declaration": true,
+        "declarationDir": "types",
+
+        // ==========================================
+        // STRICTNESS & RESOLUTION
+        // ==========================================
+        // Enforce strict checks and enable convenient JSON imports.
+        "strict": true,
+        "esModuleInterop": true,
+        "moduleResolution": "bundler"
+    },
+
+    // ==========================================
+    // SCOPE
+    // ==========================================
+    // Include source + test helpers; exclude build artifacts and test files that
+    // should not be compiled directly by the type checker.
+    "include": ["src/**/*.ts", "tests/**/*.ts", "./*.config.ts"],
+    "exclude": ["node_modules", "**/*.test.ts"]
 }
