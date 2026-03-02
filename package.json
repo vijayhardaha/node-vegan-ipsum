@@ -42,7 +42,8 @@
 		"format:check": "prettier --check \"**/*.{ts,js,json,md}\"",
 		"test": "jest --coverage",
 		"release": "pnpm run build && release-it",
-		"release:dry": "pnpm run build && release-it --dry-run"
+		"release:dry": "pnpm run build && release-it --dry-run",
+		"prepare": "husky"
 	},
 	"keywords": [
 		"cli",
@@ -64,6 +65,8 @@
 		"npm": ">= 8.x"
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^20.4.2",
+		"@commitlint/config-conventional": "^20.4.2",
 		"@eslint/compat": "^2.0.2",
 		"@eslint/eslintrc": "^3.3.3",
 		"@eslint/js": "^9.39.2",
@@ -78,6 +81,7 @@
 		"eslint-plugin-import": "^2.32.0",
 		"eslint-plugin-prettier": "^5.5.5",
 		"globals": "^17.3.0",
+		"husky": "^9.1.7",
 		"jest": "^30.2.0",
 		"nock-exec": "^0.1.0",
 		"prettier": "^3.8.1",
