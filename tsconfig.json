@@ -26,7 +26,7 @@
   "include": [
     // Include all TypeScript files in 'src' and 'test' directories
     "src/**/*",
-    "test/**/*",
+    "tests/**/*",
     // Include configuration files with '.config.mjs' extension
     "*.config.mjs"
   ],
