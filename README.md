@@ -80,6 +80,17 @@ vegan-ipsum 2 paragraphs --format html
 
 ---
 
+## Requirements
+
+- Node.js: >= 20.x
+- npm: >= 9.x
+
+Ensure you are using a supported Node.js LTS. Recommended install via nvm:
+```bash
+nvm install --lts
+nvm use --lts
+```
+
 ## Project
 
 This package is part of a small ecosystem around vegan-themed placeholder text. Related projects and integrations:
