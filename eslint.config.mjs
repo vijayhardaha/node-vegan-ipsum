@@ -2,16 +2,7 @@
  * ===================================================================
  * ESLINT CONFIG (Flat config)
  * ===================================================================
- * Purpose: Project-wide linting configuration. Enables recommended JS
- * and TypeScript rules, integrates Prettier as an ESLint rule, and
- * defines reasonable ignore patterns for build and generated files.
- * Docs: https://eslint.org/docs/latest/use/configure/configuration-files-new
- * ===================================================================
  */
-
-// -------------------------
-// ESLint / Plugin Imports
-// -------------------------
 import { defineConfig } from "eslint/config";
 import js from "@eslint/js";
 import globals from "globals";
@@ -20,18 +11,10 @@ import tsPlugin from "@typescript-eslint/eslint-plugin";
 import eslintPluginPrettier from "eslint-plugin-prettier";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
 
-// -------------------------
-// Exported flat config
-// -------------------------
 export default defineConfig([
-	// Base JavaScript rules from @eslint/js
-	js.configs.recommended,
-
+	// 1. Global Ignores (Must be the first item in the array)
+	// This ensures ESLint completely skips these paths before attempting to parse.
 	{
-		// Target files for this block
-		files: ["**/*.{js,ts,mjs,cjs}"],
-
-		// Files and directories the linter should ignore (speed & noise)
 		ignores: [
 			"**/.git/",
 			"**/node_modules/",
@@ -40,25 +23,39 @@ export default defineConfig([
 			"**/types/",
 			"**/*.log",
 			"**/*.tsbuildinfo",
-			"**/*.test.ts",
+			"**/*.test.{ts,tsx,js,jsx}",
 		],
+	},
 
-		// Plugins used in rule definitions below
+	// 2. Base JavaScript rules
+	js.configs.recommended,
+
+	// 3. TypeScript Specific Configuration
+	{
+		// ONLY target TypeScript files here.
+		// If you include .js, the TS parser will try to parse vanilla JS as TS, causing errors.
+		files: ["**/*.ts"],
+
 		plugins: {
 			"@typescript-eslint": tsPlugin,
 			prettier: eslintPluginPrettier,
 		},
 
-		// Language / parser configuration
 		languageOptions: {
 			ecmaVersion: "latest",
 			sourceType: "module",
 			globals: { ...globals.node },
+			// Apply the TS parser ONLY to .ts files
 			parser: tsParser,
+			parserOptions: {
+				project: "./tsconfig.json", // Optional: enables type-aware linting
+				ecmaVersion: "latest",
+                sourceType: "module",
+			},
 		},
 
-		// Project-specific rules (do not change semantics here)
 		rules: {
+			...tsPlugin.configs.recommended.rules,
 			"@typescript-eslint/no-unused-vars": [
 				"error",
 				{
@@ -70,12 +67,10 @@ export default defineConfig([
 					caughtErrors: "all",
 				},
 			],
-
-			// Use eslint-plugin-prettier to surface Prettier issues as ESLint errors
 			"prettier/prettier": "error",
 		},
 	},
 
-	// Prettier flat config to disable ESLint rules that conflict with Prettier
+	// 4. Prettier Config (Disables conflicting ESLint rules)
 	eslintConfigPrettier,
 ]);
