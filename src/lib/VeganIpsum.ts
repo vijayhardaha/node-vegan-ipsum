@@ -7,7 +7,7 @@ import {
 } from "../constants";
 import { isNode, isReactNative, isWindows, fillArrayWith } from "../util";
 
-import Generator, { IGeneratorOptions } from "./generator";
+import Generator, { GeneratorOptions } from "./generator";
 
 /**
  * A class for generating vegan ipsum text in various formats and units.
@@ -18,13 +18,13 @@ class VeganIpsum {
 	/**
 	 * Creates an instance of the `VeganIpsum` class.
 	 *
-	 * @param {IGeneratorOptions} options - Configuration options for the text generator.
+	 * @param {GeneratorOptions} options - Configuration options for the text generator.
 	 * @param {LoremFormat} format - The format of the generated text (e.g., plain or HTML).
 	 * @param {string} [suffix] - A custom line ending or suffix for the generated text.
 	 * @throws {Error} If the provided format is invalid.
 	 */
 	constructor(
-		options: IGeneratorOptions = {},
+		options: GeneratorOptions = {},
 		public format: LoremFormat = FORMAT_PLAIN,
 		public suffix?: string
 	) {

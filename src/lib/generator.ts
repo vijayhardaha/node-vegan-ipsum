@@ -4,7 +4,7 @@ import { capitalize, rangeArray } from "../util";
 /**
  * Represents a range with minimum and maximum bounds.
  */
-export interface IBounds {
+export interface Bounds {
 	min: number;
 	max: number;
 }
@@ -12,38 +12,38 @@ export interface IBounds {
 /**
  * Type for a pseudo-random number generator function.
  */
-export type IPrng = () => number;
+export type Prng = () => number;
 
 /**
  * Type for a seedable random number generator constructor.
  */
-export type ISeedRandom = new (seed?: string) => IPrng;
+export type SeedRandom = new (seed?: string) => Prng;
 
 /**
  * Interface for math utilities with a seedable random number generator.
  */
-export interface IMath {
-	seedrandom: ISeedRandom;
+export interface Math {
+	seedrandom: SeedRandom;
 }
 
 /**
  * Options for configuring the `Generator` class.
  */
-export interface IGeneratorOptions {
+export interface GeneratorOptions {
 	/**
 	 * Range for the number of sentences per paragraph.
 	 */
-	sentencesPerParagraph?: IBounds;
+	sentencesPerParagraph?: Bounds;
 
 	/**
 	 * Range for the number of words per sentence.
 	 */
-	wordsPerSentence?: IBounds;
+	wordsPerSentence?: Bounds;
 
 	/**
 	 * Custom random number generator function.
 	 */
-	random?: IPrng;
+	random?: Prng;
 
 	/**
 	 * Custom word list to use for generating text.
@@ -55,15 +55,15 @@ export interface IGeneratorOptions {
  * A class for generating random text (words, sentences, paragraphs).
  */
 class Generator {
-	public sentencesPerParagraph: IBounds;
-	public wordsPerSentence: IBounds;
-	public random: IPrng;
+	public sentencesPerParagraph: Bounds;
+	public wordsPerSentence: Bounds;
+	public random: Prng;
 	public words: string[];
 
 	/**
 	 * Creates an instance of the `Generator` class.
 	 *
-	 * @param {IGeneratorOptions} options - Configuration options for the generator.
+	 * @param {GeneratorOptions} options - Configuration options for the generator.
 	 * @throws {Error} If the minimum exceeds the maximum in the provided bounds.
 	 */
 	constructor({
@@ -71,7 +71,7 @@ class Generator {
 		wordsPerSentence = { max: 15, min: 5 },
 		random,
 		words = WORDS,
-	}: IGeneratorOptions = {}) {
+	}: GeneratorOptions = {}) {
 		if (sentencesPerParagraph.min > sentencesPerParagraph.max) {
 			throw new Error(
 				`Minimum number of sentences per paragraph (${

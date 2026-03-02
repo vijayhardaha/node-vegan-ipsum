@@ -7,13 +7,13 @@ import {
 	UNIT_WORDS,
 } from "./constants";
 import { WORDS } from "./constants/words";
-import { IPrng } from "./lib/generator";
+import { Prng } from "./lib/generator";
 import VeganIpsum from "./lib/VeganIpsum";
 
 /**
  * Parameters for generating vegan ipsum text.
  */
-export interface IVeganIpsumParams {
+export interface VeganIpsumParams {
 	/**
 	 * Number of units to generate (e.g., paragraphs, sentences, or words).
 	 * @default 1
@@ -41,7 +41,7 @@ export interface IVeganIpsumParams {
 	/**
 	 * Custom random number generator.
 	 */
-	random?: IPrng;
+	random?: Prng;
 
 	/**
 	 * Minimum number of words per sentence.
@@ -91,9 +91,9 @@ const veganIpsum = ({
 	units = UNIT_SENTENCES,
 	words = WORDS,
 	suffix = "",
-}: IVeganIpsumParams = {}): string => {
+}: VeganIpsumParams = {}): string => {
 	const options: {
-		random?: IPrng;
+		random?: Prng;
 		sentencesPerParagraph: { max: number; min: number };
 		words: string[];
 		wordsPerSentence: { max: number; min: number };
