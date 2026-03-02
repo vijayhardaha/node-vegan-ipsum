@@ -1,120 +1,81 @@
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+/**
+ * ===================================================================
+ * ESLINT CONFIG (Flat config)
+ * ===================================================================
+ * Purpose: Project-wide linting configuration. Enables recommended JS
+ * and TypeScript rules, integrates Prettier as an ESLint rule, and
+ * defines reasonable ignore patterns for build and generated files.
+ * Docs: https://eslint.org/docs/latest/use/configure/configuration-files-new
+ * ===================================================================
+ */
 
-import { fixupPluginRules } from "@eslint/compat";
-import { FlatCompat } from "@eslint/eslintrc";
+// -------------------------
+// ESLint / Plugin Imports
+// -------------------------
+import { defineConfig } from "eslint/config";
 import js from "@eslint/js";
-import tsParser from "@typescript-eslint/parser";
-import { defineConfig, globalIgnores } from "eslint/config";
-import importPlugin from "eslint-plugin-import";
 import globals from "globals";
+import tsParser from "@typescript-eslint/parser";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
+import eslintPluginPrettier from "eslint-plugin-prettier";
+import eslintConfigPrettier from "eslint-config-prettier/flat";
 
-// Resolve __dirname and __filename for ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Initialize FlatCompat for backward compatibility with older ESLint configurations
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended, // Use recommended JavaScript rules
-});
-
+// -------------------------
+// Exported flat config
+// -------------------------
 export default defineConfig([
-  // Define global ignore patterns for files and directories
-  globalIgnores([
-    "**/.git/",
-    "**/node_modules/",
-    "**/dist/",
-    "**/coverage/",
-    "**/types/",
-    "**/*.log",
-    "**/*.tsbuildinfo",
-  ]),
+	// Base JavaScript rules from @eslint/js
+	js.configs.recommended,
 
-  // Specify file extensions to lint
-  { files: ["**/*.{js,ts,mjs}"] },
+	{
+		// Target files for this block
+		files: ["**/*.{js,ts,mjs,cjs}"],
 
-  // Include compat-provided base configs (preserve precedence)
-  ...compat.extends(
-    "eslint:recommended", // Base recommended rules
-    "plugin:@typescript-eslint/recommended", // TypeScript-specific rules
-    "plugin:prettier/recommended" // Prettier integration
-  ),
+		// Files and directories the linter should ignore (speed & noise)
+		ignores: [
+			"**/.git/",
+			"**/node_modules/",
+			"**/dist/",
+			"**/coverage/",
+			"**/types/",
+			"**/*.log",
+			"**/*.tsbuildinfo",
+			"**/*.test.ts",
+		],
 
-  {
-    // Define plugins for additional linting capabilities
-    plugins: {
-      import: fixupPluginRules(importPlugin), // Import/export linting rules
-    },
+		// Plugins used in rule definitions below
+		plugins: {
+			"@typescript-eslint": tsPlugin,
+			prettier: eslintPluginPrettier,
+		},
 
-    // Configure resolver settings so `eslint-plugin-import` understands `@` aliases
-    settings: {
-      "import/resolver": {
-        typescript: {
-          project: path.resolve(__dirname, "tsconfig.json"),
-        },
-        alias: {
-          map: [["@", path.resolve(__dirname, "src")]],
-          extensions: [".ts", ".js", ".mjs", ".json"],
-        },
-      },
-    },
+		// Language / parser configuration
+		languageOptions: {
+			ecmaVersion: "latest",
+			sourceType: "module",
+			globals: { ...globals.node },
+			parser: tsParser,
+		},
 
-    // Configure language options
-    languageOptions: {
-      ecmaVersion: "latest", // Use the latest ECMAScript version
-      sourceType: "module", // Enable ES module syntax
-      globals: {
-        ...globals.node, // Include Node.js global variables
-      },
+		// Project-specific rules (do not change semantics here)
+		rules: {
+			"@typescript-eslint/no-unused-vars": [
+				"error",
+				{
+					vars: "all",
+					varsIgnorePattern: "^_",
+					args: "after-used",
+					argsIgnorePattern: "^_",
+					ignoreRestSiblings: true,
+					caughtErrors: "all",
+				},
+			],
 
-      parser: tsParser, // Use TypeScript parser
-      parserOptions: {
-        tsconfigRootDir: __dirname, // Set the root directory for the TypeScript config
-      },
-    },
+			// Use eslint-plugin-prettier to surface Prettier issues as ESLint errors
+			"prettier/prettier": "error",
+		},
+	},
 
-    // Define custom linting rules
-    rules: {
-      // Prettier integration: show warnings for formatting issues
-      "prettier/prettier": ["warn", {}, { usePrettierrc: true }],
-
-      // Enforce import order and grouping
-      "import/order": [
-        "error",
-        {
-          groups: ["builtin", "external", "internal", "parent", "sibling", "index", "object"],
-
-          pathGroups: [
-            {
-              pattern: "@/**", // Treat paths starting with "@" as internal
-              group: "internal",
-              position: "after",
-            },
-          ],
-
-          alphabetize: {
-            order: "asc", // Sort imports alphabetically
-            caseInsensitive: true, // Ignore case when sorting
-          },
-
-          "newlines-between": "always", // Require newlines between import groups
-          warnOnUnassignedImports: true, // Warn on imports without assignments
-        },
-      ],
-
-      // TypeScript: disallow unused variables
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        {
-          vars: "all", // Check all variables
-          varsIgnorePattern: "^_", // Ignore variables starting with "_"
-          args: "after-used", // Check arguments after they are used
-          argsIgnorePattern: "^_", // Ignore arguments starting with "_"
-          ignoreRestSiblings: true, // Ignore rest siblings in destructuring
-          caughtErrors: "all", // Check all caught errors
-        },
-      ],
-    },
-  },
+	// Prettier flat config to disable ESLint rules that conflict with Prettier
+	eslintConfigPrettier,
 ]);
