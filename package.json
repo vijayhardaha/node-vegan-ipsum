@@ -29,6 +29,7 @@
   "types": "types/src/index.d.ts",
   "scripts": {
     "clean-build": "rm -rf types && rm -rf dist",
+    "check-types": "tsc --noEmit",
     "build:types": "rm -rf types && tsc --emitDeclarationOnly",
     "build:js": "vite build",
     "build:bin": "vite build --config vitebin.config.ts",
