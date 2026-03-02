@@ -12,23 +12,36 @@
   "bugs": {
     "url": "https://github.com/vijayhardaha/node-vegan-ipsum/issues"
   },
-  "main": "dist/index",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./bin/vegan-ipsum.bin.js": {
+      "require": "./dist/bin/vegan-ipsum.bin.cjs"
+    }
+  },
   "bin": {
-    "vegan-ipsum": "dist/bin/vegan-ipsum.bin.js"
+    "vegan-ipsum": "dist/bin/vegan-ipsum.bin.cjs"
   },
   "types": "types/src/index.d.ts",
   "scripts": {
     "clean-build": "rm -rf types && rm -rf dist",
-    "type-check": "tsc --noEmit",
     "build:types": "rm -rf types && tsc --emitDeclarationOnly",
-    "build:js": "rm -rf dist && babel src --ignore '**/*.test.ts' --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
-    "build:exec": "gsed -i '1i #!/usr/bin/env node' dist/bin/vegan-ipsum.bin.js",
-    "build": "npm run build:types && npm run build:js && npm run build:exec",
-    "lint:check": "eslint src --ext .ts,.js",
-    "lint:fix": "eslint src --ext .ts,.js --fix",
+    "build:js": "vite build",
+    "build:bin": "vite build --config vitebin.config.ts",
+    "build:exec": "chmod +x dist/bin/vegan-ipsum.bin.cjs",
+    "build": "pnpm run clean-build && pnpm run build:js && pnpm run build:bin && pnpm run build:exec",
+    "test:local": "node tests/local/test-cjs.js && node tests/local/test-interop-cjs.js && node tests/local/test-esm.mjs",
+    "lint": "eslint src --ext .ts,.js",
+    "lint:fix": "eslint src --ext --fix .ts,.js",
+    "format": "prettier --write \"**/*.{ts,js,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,js,json,md}\"",
     "test": "jest --coverage",
-    "release": "npm run build && release-it",
-    "release:dry": "npm run build && release-it --dry-run"
+    "release": "pnpm run build && release-it",
+    "release:dry": "pnpm run build && release-it --dry-run"
   },
   "keywords": [
     "cli",
@@ -50,14 +63,6 @@
     "npm": ">= 8.x"
   },
   "devDependencies": {
-    "@babel/cli": "^7.28.6",
-    "@babel/core": "^7.29.0",
-    "@babel/eslint-parser": "^7.28.6",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
-    "@babel/plugin-transform-modules-commonjs": "^7.28.6",
-    "@babel/preset-env": "^7.29.0",
-    "@babel/preset-typescript": "^7.28.5",
     "@eslint/compat": "^2.0.2",
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.2",
@@ -66,7 +71,6 @@
     "@types/random-seed": "^0.3.5",
     "@typescript-eslint/eslint-plugin": "^8.56.0",
     "@typescript-eslint/parser": "^8.56.0",
-    "babel-loader": "^10.0.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.4",
@@ -78,7 +82,9 @@
     "prettier": "^3.8.1",
     "release-it": "^19.2.4",
     "ts-jest": "^29.4.6",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4"
   },
   "dependencies": {
     "commander": "^14.0.3"
@@ -101,5 +107,6 @@
       "json",
       "node"
     ]
-  }
+  },
+  "packageManager": "pnpm@10.0.0"
 }
