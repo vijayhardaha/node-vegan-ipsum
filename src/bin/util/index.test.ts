@@ -18,7 +18,8 @@ import {
 const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"));
 
 /**
- * Unit tests for bin utility functions.
+ * Unit tests for CLI utility helpers verifying clipboard, platform detection,
+ * and version behaviors under simulated environments.
  */
 describe("bin util functions", () => {
 	/**
@@ -29,6 +30,8 @@ describe("bin util functions", () => {
 		 * Helper to mock and reset the platform during tests.
 		 */
 		const process = new ProcessHelper();
+
+		// Define a sample string to be used in clipboard tests
 		const str: string = "Some string";
 
 		/**
@@ -82,6 +85,7 @@ describe("bin util functions", () => {
 			copyToClipboard(str).catch((error) => {
 				// Expect an error to be thrown with the mocked error message
 				expect(error).toBeDefined();
+				// Expect the error message to match the mocked error message from nockExec
 				expect(error.message).toEqual(errorMessage);
 			});
 		});
@@ -129,23 +133,15 @@ describe("bin util functions", () => {
 	 */
 	describe("getPlatform", () => {
 		/**
-		 * Cache the original `process.platform` to restore it after each test.
+		 * Use the shared ProcessHelper to mock and restore `process.platform`.
 		 */
-		const cachedPlatform: NodeJS.Platform = process.platform;
+		const process = new ProcessHelper();
 
 		/**
-		 * Helper function to mock the `process.platform` value.
-		 * @param platform - The platform string to set as `process.platform`.
-		 */
-		const setPlatform = (platform?: string): void => {
-			Object.defineProperty(process, "platform", { value: platform });
-		};
-
-		/**
-		 * Restore the original `process.platform` after each test.
+		 * Reset the platform to its original state after each test to avoid side effects.
 		 */
 		afterEach(() => {
-			setPlatform(cachedPlatform);
+			process.resetPlatform();
 		});
 
 		/**
@@ -153,12 +149,13 @@ describe("bin util functions", () => {
 		 */
 		test("Should throw an error if it cannot determine the platform", () => {
 			// Simulate an undefined platform
-			setPlatform();
+			process.setPlatform();
 			try {
 				getPlatform();
 			} catch (error) {
 				// Expect an error to be thrown with a specific message
 				expect(error).toBeDefined();
+				// Expect the error message to indicate that the platform cannot be determined
 				expect((error as Error).message).toEqual(
 					CANNOT_DETERMINE_PLATFORM
 				);
@@ -171,7 +168,8 @@ describe("bin util functions", () => {
 		test("Should return the platform", () => {
 			// Iterate over all supported platforms and ensure the function returns the correct platform
 			Object.values(SUPPORTED_PLATFORMS).forEach((platform: string) => {
-				setPlatform(platform);
+				process.setPlatform(platform);
+				// Expect the function to return the correct platform for each supported platform
 				expect(getPlatform()).toEqual(platform);
 			});
 		});
@@ -200,6 +198,7 @@ describe("bin util functions", () => {
 		test("Should return true if the platform is supported", () => {
 			// Iterate over all supported platforms and ensure the function returns true
 			Object.values(SUPPORTED_PLATFORMS).forEach((platform: string) => {
+				// Expect the function to return true for each supported platform
 				expect(isSupportedPlatform(platform)).toEqual(true);
 			});
 		});
@@ -208,7 +207,7 @@ describe("bin util functions", () => {
 		 * Test case: Should return false if the platform is unsupported.
 		 */
 		test("Should return false if the platform is unsupported", () => {
-			// Test with an unsupported platform string
+			// Expect the function to return false for an unsupported platform
 			expect(isSupportedPlatform("os2")).toEqual(false);
 		});
 	});

@@ -1,9 +1,11 @@
 import { SUPPORTED_PLATFORMS } from "../constants";
 
 import { isNode, isReactNative, isWindows } from ".";
+import ProcessHelper from "../../tests/util/ProcessHelper";
 
 /**
- * Unit tests for environment detection utilities.
+ * Unit tests for environment detection utilities ensuring Node, React Native,
+ * and Windows detection behave correctly under simulated globals.
  */
 describe("environment utilities", () => {
 	/**
@@ -23,46 +25,32 @@ describe("environment utilities", () => {
 	 * Unit tests for the `isReactNative` function.
 	 */
 	describe("isReactNative", () => {
-		/**
-		 * Cache the original `navigator` object to restore it after each test.
-		 */
-		const cachedNavigator: typeof global.navigator = global.navigator;
+		// Use the shared ProcessHelper to mock and restore `navigator`.
+		const process = new ProcessHelper();
 
 		/**
-		 * Helper function to mock the `navigator` object.
-		 * @param obj - The object to set as the global `navigator`.
+		 * Reset the navigator to its original state after each test to avoid side effects.
+		 * This ensures that changes to `navigator` in one test do not affect others.
 		 */
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		// AFTER (Fixed)
-		const setNavigator = (obj: any): void => {
-			// We use defineProperty to 'reconfigure' the property as writable
-			Object.defineProperty(global, "navigator", {
-				value: obj,
-				writable: true, // Allows future re-assignment if needed
-				configurable: true, // Allows the property to be deleted or reconfigured again
-			});
-		};
+		afterEach(() => {
+			process.resetNavigator();
+		});
 
 		/**
-		 * Restore the original `navigator` object after each test.
-		 */
-		afterEach(() => setNavigator(cachedNavigator));
-
-		/**
-		 * Test case: Should return false if not in a React Native environment.
+		 * Test case: Should return false if the navigator object is not defined or does not indicate React Native.
 		 */
 		test("returns false when not React Native", () => {
-			// Simulate the absence of a `navigator` object
-			setNavigator(undefined);
+			process.setNavigator(undefined);
+			// Expect `isReactNative` to return false when `navigator` is undefined
 			expect(isReactNative()).toEqual(false);
 		});
 
 		/**
-		 * Test case: Should return true if in a React Native environment.
+		 * Test case: Should return true if the navigator object indicates a React Native environment.
 		 */
 		test("returns true when navigator.product === 'ReactNative'", () => {
-			// Simulate a `navigator` object with `product` set to "ReactNative"
-			setNavigator({ product: "ReactNative" });
+			process.setNavigator({ product: "ReactNative" });
+			// Expect `isReactNative` to return true when `navigator.product` is set to 'ReactNative'
 			expect(isReactNative()).toEqual(true);
 		});
 	});
@@ -71,48 +59,41 @@ describe("environment utilities", () => {
 	 * Unit tests for the `isWindows` function.
 	 */
 	describe("isWindows", () => {
-		/**
-		 * Cache the original `process.platform` to restore it after each test.
-		 */
-		const cachedPlatform: NodeJS.Platform = process.platform;
+		// Use the shared ProcessHelper to mock and restore `process.platform`.
+		const process = new ProcessHelper();
 
 		/**
-		 * Helper function to mock the `process.platform` value.
-		 * @param platform - The platform string to set as `process.platform`.
+		 * Reset the platform to its original state after each test to avoid side effects.
+		 * This ensures that changes to `process.platform` in one test do not affect others.
 		 */
-		const setPlatform = (platform?: string): void => {
-			Object.defineProperty(process, "platform", { value: platform });
-		};
+		afterEach(() => {
+			process.resetPlatform();
+		});
 
 		/**
-		 * Restore the original `process.platform` after each test.
-		 */
-		afterEach(() => setPlatform(cachedPlatform));
-
-		/**
-		 * Test case: Should return false if not running on Windows.
+		 * Test case: Should return false if the platform is not Windows.
 		 */
 		test("returns false for non-Windows platform", () => {
-			// Simulate a non-Windows platform (e.g., macOS)
-			setPlatform(SUPPORTED_PLATFORMS.DARWIN);
+			process.setPlatform(SUPPORTED_PLATFORMS.DARWIN);
+			// Expect `isWindows` to return false when `process.platform` is set to 'darwin'
 			expect(isWindows()).toEqual(false);
 		});
 
 		/**
-		 * Test case: Should return true if running on Windows.
+		 * Test case: Should return true if the platform is Windows.
 		 */
 		test("returns true for Windows platform", () => {
-			// Simulate a Windows platform
-			setPlatform(SUPPORTED_PLATFORMS.WIN32);
+			process.setPlatform(SUPPORTED_PLATFORMS.WIN32);
+			// Expect `isWindows` to return true when `process.platform` is set to 'win32'
 			expect(isWindows()).toEqual(true);
 		});
 
 		/**
-		 * Test case: Should return false if `process.platform` is undefined.
+		 * Test case: Should return false if the platform is undefined.
 		 */
 		test("returns false when platform undefined", () => {
-			// Simulate an undefined platform
-			setPlatform(undefined);
+			process.setPlatform(undefined);
+			// Expect `isWindows` to return false when `process.platform` is undefined
 			expect(isWindows()).toEqual(false);
 		});
 	});

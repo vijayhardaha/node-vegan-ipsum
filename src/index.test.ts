@@ -11,7 +11,12 @@ import {
 
 import { veganIpsum } from ".";
 
+/**
+ * Unit tests for the `veganIpsum` convenience function validating output
+ * units, counts, and formatting across common input combinations.
+ */
 describe("veganIpsum", () => {
+	// Helper to mock and reset the platform during tests.
 	const process = new ProcessHelper();
 
 	/**
@@ -24,8 +29,10 @@ describe("veganIpsum", () => {
 	 */
 	test("Should return one sentence by default", () => {
 		const result = veganIpsum();
+		// Expect the result to be a non-empty string ending with a period.
 		expect(result.slice(-1)).toEqual(".");
 
+		// Expect the result to contain exactly one sentence.
 		const sentences = result.split(". ");
 		expect(sentences).toHaveLength(1);
 	});
@@ -41,6 +48,7 @@ describe("veganIpsum", () => {
 		someUnits.forEach((units) => {
 			const results = veganIpsum({ count, units });
 			const paragraphs = results.split(LINE_ENDINGS.WIN32);
+			// Expect the number of paragraphs to match the specified count.
 			expect(paragraphs).toHaveLength(count);
 		});
 	});
@@ -55,6 +63,7 @@ describe("veganIpsum", () => {
 		someUnits.forEach((units) => {
 			const results = veganIpsum({ count, units });
 			const sentences = results.split(". ");
+			// Expect the number of sentences to match the specified count.
 			expect(sentences).toHaveLength(count);
 		});
 	});
@@ -69,6 +78,7 @@ describe("veganIpsum", () => {
 		someUnits.forEach((units) => {
 			const results = veganIpsum({ count, units });
 			const words = results.split(" ");
+			// Expect the number of words to match the specified count.
 			expect(words).toHaveLength(count);
 		});
 	});
@@ -78,6 +88,7 @@ describe("veganIpsum", () => {
 	 */
 	test("Should return an empty string for invalid units", () => {
 		// @ts-expect-error Testing invalid units input
+		// Expect the function to return an empty string when units are not recognized.
 		expect(veganIpsum({ count: 7, units: "unknown" })).toEqual("");
 	});
 });

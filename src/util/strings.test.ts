@@ -1,7 +1,8 @@
 import { capitalize, rangeArray, fillArrayWith } from ".";
 
 /**
- * Unit tests for string and array generation utilities.
+ * Unit tests for string and array utilities validating capitalization,
+ * range generation, and array-filling behavior with representative inputs.
  */
 describe("strings utilities", () => {
 	/**
