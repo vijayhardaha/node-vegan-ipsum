@@ -53,6 +53,20 @@ describe("environment utilities", () => {
 			// Expect `isReactNative` to return true when `navigator.product` is set to 'ReactNative'
 			expect(isReactNative()).toEqual(true);
 		});
+
+		/**
+		 * Test case: Should return false if accessing navigator throws an error.
+		 * The try/catch in `isReactNative` should catch and return false instead of bubbling.
+		 */
+		test("returns false when navigator access throws", () => {
+			Object.defineProperty(global, "navigator", {
+				get: () => {
+					throw new Error("navigator failure");
+				},
+				configurable: true,
+			});
+			expect(isReactNative()).toEqual(false);
+		});
 	});
 
 	/**
@@ -94,6 +108,22 @@ describe("environment utilities", () => {
 		test("returns false when platform undefined", () => {
 			process.setPlatform(undefined);
 			// Expect `isWindows` to return false when `process.platform` is undefined
+			expect(isWindows()).toEqual(false);
+		});
+
+		/**
+		 * Test case: Should return false if accessing `process.platform` throws an error.
+		 * This triggers the catch block in `isWindows` ensuring safe failure.
+		 */
+		test("returns false when reading platform throws", () => {
+			// directly patch the global process object (not the helper)
+			Object.defineProperty(global.process, "platform", {
+				get: () => {
+					throw new Error("oh no");
+				},
+				configurable: true,
+			});
+			// Expect `isWindows` to return false when accessing `process.platform` throws an error
 			expect(isWindows()).toEqual(false);
 		});
 	});
