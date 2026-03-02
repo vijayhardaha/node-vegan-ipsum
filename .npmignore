@@ -10,6 +10,7 @@
 /test
 /tests
 /.vscode
+/.husky
 /.github
 /.git
 #/dist
