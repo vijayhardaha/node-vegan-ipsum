@@ -21,8 +21,8 @@ import { VeganIpsum } from "vegan-ipsum";
 // const VeganIpsum = require("vegan-ipsum").VeganIpsum;
 
 const vegan = new VeganIpsum({
-  sentencesPerParagraph: { min: 4, max: 8 },
-  wordsPerSentence: { min: 4, max: 16 },
+	sentencesPerParagraph: { min: 4, max: 8 },
+	wordsPerSentence: { min: 4, max: 16 },
 });
 
 vegan.generateWords(1);
@@ -46,15 +46,15 @@ Customizable options:
 
 ```js
 VeganIpsum({
-  count: 1,
-  format: "plain", // "plain" or "html"
-  paragraphLowerBound: 3,
-  paragraphUpperBound: 7,
-  sentenceLowerBound: 5,
-  sentenceUpperBound: 15,
-  random: Math.random,
-  suffix: "\n",
-  units: "sentences", // "words", "sentences", or "paragraphs"
+	count: 1,
+	format: "plain", // "plain" or "html"
+	paragraphLowerBound: 3,
+	paragraphUpperBound: 7,
+	sentenceLowerBound: 5,
+	sentenceUpperBound: 15,
+	random: Math.random,
+	suffix: "\n",
+	units: "sentences", // "words", "sentences", or "paragraphs"
 });
 ```
 

@@ -1,114 +1,114 @@
 {
-  "name": "vegan-ipsum",
-  "version": "1.0.4",
-  "description": "Generates passages of vegan-themed placeholder text suitable for use in web pages, graphics, and more. Works in the browser, NodeJS, and React Native.",
-  "author": "Vijay Hardaha (http://github.com/vijayhardaha)",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/vijayhardaha/node-vegan-ipsum.git"
-  },
-  "homepage": "https://github.com/vijayhardaha/node-vegan-ipsum#readme",
-  "bugs": {
-    "url": "https://github.com/vijayhardaha/node-vegan-ipsum/issues"
-  },
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
-    "./bin/vegan-ipsum.bin.js": {
-      "require": "./dist/bin/vegan-ipsum.bin.cjs"
-    }
-  },
-  "bin": {
-    "vegan-ipsum": "dist/bin/vegan-ipsum.bin.cjs"
-  },
-  "types": "types/src/index.d.ts",
-  "scripts": {
-    "clean-build": "rm -rf types && rm -rf dist",
-    "check-types": "tsc --noEmit",
-    "build:types": "rm -rf types && tsc --emitDeclarationOnly",
-    "build:js": "vite build",
-    "build:bin": "vite build --config vitebin.config.ts",
-    "build:exec": "chmod +x dist/bin/vegan-ipsum.bin.cjs",
-    "build": "pnpm run clean-build && pnpm run build:js && pnpm run build:bin && pnpm run build:exec",
-    "test:local": "node tests/local/test-cjs.js && node tests/local/test-esm.mjs && node tests/local/test-interop-cjs.js",
-    "lint": "eslint src --ext .ts,.js",
-    "lint:fix": "eslint src --ext --fix .ts,.js",
-    "format": "prettier --write \"**/*.{ts,js,json,md}\"",
-    "format:check": "prettier --check \"**/*.{ts,js,json,md}\"",
-    "test": "jest --coverage",
-    "release": "pnpm run build && release-it",
-    "release:dry": "pnpm run build && release-it --dry-run"
-  },
-  "keywords": [
-    "cli",
-    "filler",
-    "generator",
-    "ipsum",
-    "lorem",
-    "lorem-ipsum",
-    "node",
-    "placeholder",
-    "placeholder-text",
-    "plant-based",
-    "typescript",
-    "vegan",
-    "vegan-ipsum"
-  ],
-  "engines": {
-    "node": ">= 16.x",
-    "npm": ">= 8.x"
-  },
-  "devDependencies": {
-    "@eslint/compat": "^2.0.2",
-    "@eslint/eslintrc": "^3.3.3",
-    "@eslint/js": "^9.39.2",
-    "@types/jest": "^30.0.0",
-    "@types/node": "^25.2.3",
-    "@types/random-seed": "^0.3.5",
-    "@typescript-eslint/eslint-plugin": "^8.56.0",
-    "@typescript-eslint/parser": "^8.56.0",
-    "eslint": "^9.39.2",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-import-resolver-typescript": "^4.4.4",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-prettier": "^5.5.5",
-    "globals": "^17.3.0",
-    "jest": "^30.2.0",
-    "nock-exec": "^0.1.0",
-    "prettier": "^3.8.1",
-    "release-it": "^19.2.4",
-    "rollup": "^4.59.0",
-    "ts-jest": "^29.4.6",
-    "typescript": "^5.9.3",
-    "vite": "^7.3.1",
-    "vite-plugin-dts": "^4.5.4"
-  },
-  "dependencies": {
-    "commander": "^14.0.3"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.ts",
-      "!src/bin/**/*.bin.ts",
-      "!src/@types/**/*.d.ts"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
-  },
-  "packageManager": "pnpm@10.0.0"
+	"name": "vegan-ipsum",
+	"version": "1.0.4",
+	"description": "Generates passages of vegan-themed placeholder text suitable for use in web pages, graphics, and more. Works in the browser, NodeJS, and React Native.",
+	"author": "Vijay Hardaha (http://github.com/vijayhardaha)",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/vijayhardaha/node-vegan-ipsum.git"
+	},
+	"homepage": "https://github.com/vijayhardaha/node-vegan-ipsum#readme",
+	"bugs": {
+		"url": "https://github.com/vijayhardaha/node-vegan-ipsum/issues"
+	},
+	"main": "dist/index.cjs",
+	"module": "dist/index.mjs",
+	"exports": {
+		".": {
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs"
+		},
+		"./bin/vegan-ipsum.bin.js": {
+			"require": "./dist/bin/vegan-ipsum.bin.cjs"
+		}
+	},
+	"bin": {
+		"vegan-ipsum": "dist/bin/vegan-ipsum.bin.cjs"
+	},
+	"types": "types/src/index.d.ts",
+	"scripts": {
+		"clean-build": "rm -rf types && rm -rf dist",
+		"check-types": "tsc --noEmit",
+		"build:types": "rm -rf types && tsc --emitDeclarationOnly",
+		"build:js": "vite build",
+		"build:bin": "vite build --config vitebin.config.ts",
+		"build:exec": "chmod +x dist/bin/vegan-ipsum.bin.cjs",
+		"build": "pnpm run clean-build && pnpm run build:js && pnpm run build:bin && pnpm run build:exec",
+		"test:local": "node tests/local/test-cjs.js && node tests/local/test-esm.mjs && node tests/local/test-interop-cjs.js",
+		"lint": "eslint src --ext .ts,.js",
+		"lint:fix": "eslint src --ext --fix .ts,.js",
+		"format": "prettier --write \"**/*.{ts,js,json,md}\"",
+		"format:check": "prettier --check \"**/*.{ts,js,json,md}\"",
+		"test": "jest --coverage",
+		"release": "pnpm run build && release-it",
+		"release:dry": "pnpm run build && release-it --dry-run"
+	},
+	"keywords": [
+		"cli",
+		"filler",
+		"generator",
+		"ipsum",
+		"lorem",
+		"lorem-ipsum",
+		"node",
+		"placeholder",
+		"placeholder-text",
+		"plant-based",
+		"typescript",
+		"vegan",
+		"vegan-ipsum"
+	],
+	"engines": {
+		"node": ">= 16.x",
+		"npm": ">= 8.x"
+	},
+	"devDependencies": {
+		"@eslint/compat": "^2.0.2",
+		"@eslint/eslintrc": "^3.3.3",
+		"@eslint/js": "^9.39.2",
+		"@types/jest": "^30.0.0",
+		"@types/node": "^25.2.3",
+		"@types/random-seed": "^0.3.5",
+		"@typescript-eslint/eslint-plugin": "^8.56.0",
+		"@typescript-eslint/parser": "^8.56.0",
+		"eslint": "^9.39.2",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-import-resolver-typescript": "^4.4.4",
+		"eslint-plugin-import": "^2.32.0",
+		"eslint-plugin-prettier": "^5.5.5",
+		"globals": "^17.3.0",
+		"jest": "^30.2.0",
+		"nock-exec": "^0.1.0",
+		"prettier": "^3.8.1",
+		"release-it": "^19.2.4",
+		"rollup": "^4.59.0",
+		"ts-jest": "^29.4.6",
+		"typescript": "^5.9.3",
+		"vite": "^7.3.1",
+		"vite-plugin-dts": "^4.5.4"
+	},
+	"dependencies": {
+		"commander": "^14.0.3"
+	},
+	"jest": {
+		"collectCoverageFrom": [
+			"src/**/*.ts",
+			"!src/bin/**/*.bin.ts",
+			"!src/@types/**/*.d.ts"
+		],
+		"transform": {
+			"^.+\\.tsx?$": "ts-jest"
+		},
+		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js",
+			"jsx",
+			"json",
+			"node"
+		]
+	},
+	"packageManager": "pnpm@10.0.0"
 }
