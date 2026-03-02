@@ -11,12 +11,13 @@ export const USAGE = "3 words [options]";
  * - `WIN32`: Command for Windows (`clip`).
  */
 export const COPY = {
-  DARWIN: "pbcopy",
-  LINUX: "xclip -selection clipboard",
-  WIN32: "clip",
+	DARWIN: "pbcopy",
+	LINUX: "xclip -selection clipboard",
+	WIN32: "clip",
 };
 
 // Error message indicating that the host operating system could not be determined.
-export const CANNOT_DETERMINE_PLATFORM = "Could not determine host operating system.";
+export const CANNOT_DETERMINE_PLATFORM =
+	"Could not determine host operating system.";
 
 export default { DESCRIPTION, USAGE, COPY, CANNOT_DETERMINE_PLATFORM };

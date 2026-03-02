@@ -13,10 +13,7 @@ export type LoremFormat = "plain" | "html";
  * - `POSIX`: Line ending for POSIX-compliant systems (`\n`).
  * - `WIN32`: Line ending for Windows systems (`\r\n`).
  */
-export const LINE_ENDINGS = {
-  POSIX: "\n",
-  WIN32: "\r\n",
-};
+export const LINE_ENDINGS = { POSIX: "\n", WIN32: "\r\n" };
 
 /**
  * An object representing supported platforms.
@@ -26,9 +23,9 @@ export const LINE_ENDINGS = {
  * - `WIN32`: Windows platform identifier.
  */
 export const SUPPORTED_PLATFORMS = {
-  DARWIN: "darwin",
-  LINUX: "linux",
-  WIN32: "win32",
+	DARWIN: "darwin",
+	LINUX: "linux",
+	WIN32: "win32",
 };
 
 /**
@@ -38,8 +35,8 @@ export const SUPPORTED_PLATFORMS = {
  * - `UNITS`: Matches supported unit types (`paragraphs`, `sentences`, `words`), case-insensitive.
  */
 export const REGEX = {
-  FORMATS: /^(plain|html)$/i,
-  UNITS: /^(paragraphs|sentences|words)$/i,
+	FORMATS: /^(plain|html)$/i,
+	UNITS: /^(paragraphs|sentences|words)$/i,
 };
 
 // Represents the unit type for words.
@@ -54,14 +51,14 @@ export const UNITS = [UNIT_WORDS, UNIT_SENTENCES, UNIT_PARAGRAPHS];
 export type LoremUnit = "words" | "sentences" | "paragraphs";
 
 export default {
-  FORMAT_HTML,
-  FORMAT_PLAIN,
-  FORMATS,
-  LINE_ENDINGS,
-  SUPPORTED_PLATFORMS,
-  REGEX,
-  UNIT_WORDS,
-  UNIT_SENTENCES,
-  UNIT_PARAGRAPHS,
-  UNITS,
+	FORMAT_HTML,
+	FORMAT_PLAIN,
+	FORMATS,
+	LINE_ENDINGS,
+	SUPPORTED_PLATFORMS,
+	REGEX,
+	UNIT_WORDS,
+	UNIT_SENTENCES,
+	UNIT_PARAGRAPHS,
+	UNITS,
 };

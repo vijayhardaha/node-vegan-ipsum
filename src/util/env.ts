@@ -6,7 +6,7 @@ import { SUPPORTED_PLATFORMS } from "../constants";
  * @returns {boolean} `true` if the runtime is Node.js, otherwise `false`.
  */
 export const isNode = (): boolean => {
-  return typeof module !== "undefined" && !!module.exports;
+	return typeof module !== "undefined" && !!module.exports;
 };
 
 /**
@@ -15,12 +15,15 @@ export const isNode = (): boolean => {
  * @returns {boolean} `true` if the runtime is React Native, otherwise `false`.
  */
 export const isReactNative = (): boolean => {
-  try {
-    return (navigator as Navigator & { product?: string }).product === "ReactNative";
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (e) {
-    return false;
-  }
+	try {
+		return (
+			(navigator as Navigator & { product?: string }).product
+			=== "ReactNative"
+		);
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	} catch (e) {
+		return false;
+	}
 };
 
 /**
@@ -29,12 +32,12 @@ export const isReactNative = (): boolean => {
  * @returns {boolean} `true` if the process is running on a Windows platform, otherwise `false`.
  */
 export const isWindows = (): boolean => {
-  try {
-    return process.platform === SUPPORTED_PLATFORMS.WIN32;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (e) {
-    return false;
-  }
+	try {
+		return process.platform === SUPPORTED_PLATFORMS.WIN32;
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	} catch (e) {
+		return false;
+	}
 };
 
 export default { isNode, isReactNative, isWindows };
