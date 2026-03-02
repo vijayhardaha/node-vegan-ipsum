@@ -27,7 +27,9 @@
 		// Enforce strict checks and enable convenient JSON imports.
 		"strict": true,
 		"esModuleInterop": true,
-		"moduleResolution": "bundler"
+		"resolveJsonModule": true,
+		"moduleResolution": "bundler",
+		"useUnknownInCatchVariables": false
 	},
 
 	// ==========================================
