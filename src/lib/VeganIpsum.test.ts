@@ -153,7 +153,7 @@ describe("VeganIpsum", () => {
 		/**
 		 * Test case: Should generate a specific number of words.
 		 */
-		it("should generate a specific number of words", () => {
+		test("should generate a specific number of words", () => {
 			const lorem = new VeganIpsum();
 			const results = lorem.generateWords(7);
 			const words = results.split(" ");
@@ -163,7 +163,7 @@ describe("VeganIpsum", () => {
 		/**
 		 * Test case: Should generate a number of words between the min and max.
 		 */
-		it("should generate a number of words between the min and max", () => {
+		test("should generate a number of words between the min and max", () => {
 			const max = 5;
 			const min = 3;
 			const lorem = new VeganIpsum({ wordsPerSentence: { max, min } });
@@ -183,7 +183,7 @@ describe("VeganIpsum", () => {
 		/**
 		 * Test case: Should generate a specific number of sentences.
 		 */
-		it("should generate a specific number of sentences", () => {
+		test("should generate a specific number of sentences", () => {
 			const lorem = new VeganIpsum();
 			const results = lorem.generateSentences(18);
 			const sentences = results.split(". ");
@@ -193,7 +193,7 @@ describe("VeganIpsum", () => {
 		/**
 		 * Test case: Should generate a number of sentences between the min and max.
 		 */
-		it("should generate a number of sentences between the min and max", () => {
+		test("should generate a number of sentences between the min and max", () => {
 			const max = 19;
 			const min = 16;
 			const lorem = new VeganIpsum({
@@ -215,7 +215,7 @@ describe("VeganIpsum", () => {
 		/**
 		 * Test case: Should generate a specific number of paragraphs.
 		 */
-		it("should generate a specific number of paragraphs", () => {
+		test("should generate a specific number of paragraphs", () => {
 			process.setPlatform(SUPPORTED_PLATFORMS.WIN32);
 			const lorem = new VeganIpsum();
 			const results = lorem.generateParagraphs(3);

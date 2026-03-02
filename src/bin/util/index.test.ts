@@ -39,7 +39,7 @@ describe("bin util functions", () => {
 		/**
 		 * Test case: Should throw an error if the platform is not supported.
 		 */
-		it("should throw an error if the platform is not supported", (done) => {
+		test("should throw an error if the platform is not supported", () => {
 			// Simulate an unsupported platform
 			process.setPlatform("OS2");
 
@@ -47,14 +47,13 @@ describe("bin util functions", () => {
 				// Expect an error to be thrown with a specific message
 				expect(error).toBeDefined();
 				expect(error.message).toEqual(`Copy is not supported for OS2`);
-				done();
 			});
 		});
 
 		/**
 		 * Test case: Should copy to the clipboard if the platform is supported.
 		 */
-		it("should copy to the clipboard if the platform is supported", (done) => {
+		test("should copy to the clipboard if the platform is supported", () => {
 			// Simulate a supported platform (Windows)
 			process.setPlatform(SUPPORTED_PLATFORMS.WIN32);
 
@@ -64,14 +63,13 @@ describe("bin util functions", () => {
 			copyToClipboard(str).then((result) => {
 				// Expect the function to resolve with the input string
 				expect(result).toEqual(str);
-				done();
 			});
 		});
 
 		/**
 		 * Test case: Should throw an error if the copy command fails.
 		 */
-		it("should throw an error if the copy command does not work", (done) => {
+		test("should throw an error if the copy command does not work", () => {
 			const errorMessage: string = "Something went wrong.";
 			// Simulate a supported platform (Windows)
 			process.setPlatform(SUPPORTED_PLATFORMS.WIN32);
@@ -85,7 +83,6 @@ describe("bin util functions", () => {
 				// Expect an error to be thrown with the mocked error message
 				expect(error).toBeDefined();
 				expect(error.message).toEqual(errorMessage);
-				done();
 			});
 		});
 	});

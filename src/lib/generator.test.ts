@@ -57,7 +57,7 @@ describe("generator", () => {
 	 * Test case: Should use a custom PRNG if provided.
 	 */
 	test("Should use a custom PRNG if provided with one", () => {
-		const random = jest.fn();
+		const random = vi.fn();
 		generator = new Generator({ random });
 		expect(generator.random).toEqual(random);
 	});

@@ -33,8 +33,14 @@ describe("environment utilities", () => {
 		 * @param obj - The object to set as the global `navigator`.
 		 */
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		// AFTER (Fixed)
 		const setNavigator = (obj: any): void => {
-			global.navigator = obj;
+			// We use defineProperty to 'reconfigure' the property as writable
+			Object.defineProperty(global, "navigator", {
+				value: obj,
+				writable: true, // Allows future re-assignment if needed
+				configurable: true, // Allows the property to be deleted or reconfigured again
+			});
 		};
 
 		/**
