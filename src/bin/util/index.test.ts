@@ -2,7 +2,7 @@ import fs from "fs";
 
 import nockExec from "nock-exec";
 
-import ProcessHelper from "../../../test/util/ProcessHelper";
+import ProcessHelper from "../../../tests/util/ProcessHelper";
 import { SUPPORTED_PLATFORMS } from "../../constants";
 import { COPY, CANNOT_DETERMINE_PLATFORM } from "../constants";
 

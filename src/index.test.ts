@@ -1,4 +1,4 @@
-import ProcessHelper from "../test/util/ProcessHelper";
+import ProcessHelper from "../tests/util/ProcessHelper";
 
 import {
 	LoremUnit,
