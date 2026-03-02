@@ -87,7 +87,6 @@ This package is part of a small ecosystem around vegan-themed placeholder text. 
 - JSON API: https://veganipsum.vercel.app/json-api
 - VS Code extension: https://veganipsum.vercel.app/vscode-extension
 
-
 ## License
 
 This project is licensed under the [MIT License](./LICENSE).
