@@ -61,8 +61,8 @@
 		"vegan-ipsum"
 	],
 	"engines": {
-		"node": ">= 16.x",
-		"npm": ">= 8.x"
+		"node": ">= 20.x",
+		"npm": ">= 9.x"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^20.4.2",
