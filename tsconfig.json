@@ -3,7 +3,7 @@
 		// Specify ECMAScript target version
 		"target": "esnext",
 		// Specify module code generation
-		"module": "commonjs",
+		"module": "nodenext",
 		// Generate .d.ts files
 		"declaration": true,
 		// Redirect output structure to the 'lib' directory
@@ -21,14 +21,14 @@
 		// Allow importing JSON files as modules
 		"resolveJsonModule": true,
 		// Use 'unknown' instead of 'any' for catch variables
-		"useUnknownInCatchVariables": false
+		"useUnknownInCatchVariables": false,
+		// Enable module resolution using Node.js
+		"moduleResolution": "nodenext"
 	},
 	"include": [
 		// Include all TypeScript files in 'src' and 'test' directories
 		"src/**/*",
-		"tests/**/*",
-		// Include configuration files with '.config.mjs' extension
-		"*.config.mjs"
+		"tests/**/*"
 	],
 	"exclude": [
 		// Exclude 'node_modules', 'coverage', 'types' directories
