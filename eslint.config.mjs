@@ -1,8 +1,20 @@
 /**
- * ===================================================================
- * ESLINT CONFIG (Flat config)
- * ===================================================================
+ * ============================================================================
+ * ESLINT CONFIG
+ * ============================================================================
+ * Purpose: Flat ESLint configuration for JavaScript and TypeScript. It
+ * - enables recommended JavaScript rules (via `@eslint/js`),
+ * - applies TypeScript rules to `.ts`/`.tsx` files (via `@typescript-eslint`),
+ * - surfaces Prettier issues through `eslint-plugin-prettier`, and
+ * - disables conflicting ESLint rules using `eslint-config-prettier/flat`.
+ *
+ * Docs: https://eslint.org/docs/latest/use/configure/configuration-files-new
+ * ============================================================================
  */
+
+// -------------------------
+// Imports
+// -------------------------
 import { defineConfig } from "eslint/config";
 import js from "@eslint/js";
 import globals from "globals";
@@ -10,10 +22,22 @@ import tsParser from "@typescript-eslint/parser";
 import tsPlugin from "@typescript-eslint/eslint-plugin";
 import eslintPluginPrettier from "eslint-plugin-prettier";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
+import { URL } from "node:url";
 
+// -------------------------
+// Context
+// -------------------------
+// Resolve a workspace-root-like path for parser options
+const __dirname = new URL(".", import.meta.url).pathname;
+
+// -------------------------
+// Exported flat config
+// -------------------------
 export default defineConfig([
-	// 1. Global Ignores (Must be the first item in the array)
-	// This ensures ESLint completely skips these paths before attempting to parse.
+	// =========================
+	// 1) Global Ignores
+	// =========================
+	// Skip heavy/generated folders before parsing any files
 	{
 		ignores: [
 			"**/.git/",
@@ -23,39 +47,45 @@ export default defineConfig([
 			"**/types/",
 			"**/*.log",
 			"**/*.tsbuildinfo",
-			"**/*.test.{ts,tsx,js,jsx}",
+			"**/*.test.ts",
+			"**/*.spec.ts",
 		],
 	},
 
-	// 2. Base JavaScript rules
+	// =========================
+	// 2) Base JavaScript Rules
+	// =========================
+	// Uses the official recommended rules for standard JS projects.
 	js.configs.recommended,
 
-	// 3. TypeScript Specific Configuration
+	// =========================
+	// 3) TypeScript (only .ts/.tsx)
+	// =========================
+	// Apply TypeScript parser & plugin only to TypeScript files. Keeping
+	// this separate prevents the TS parser from attempting to parse plain JS.
 	{
-		// ONLY target TypeScript files here.
-		// If you include .js, the TS parser will try to parse vanilla JS as TS, causing errors.
-		files: ["**/*.ts"],
+		files: ["**/*.ts", "**/*.tsx"],
 
+		// Register plugins used in this block
 		plugins: {
 			"@typescript-eslint": tsPlugin,
 			prettier: eslintPluginPrettier,
 		},
 
+		// Language & parser configuration for TypeScript files
 		languageOptions: {
-			ecmaVersion: "latest",
-			sourceType: "module",
 			globals: { ...globals.node },
-			// Apply the TS parser ONLY to .ts files
 			parser: tsParser,
 			parserOptions: {
-				project: "./tsconfig.json", // Optional: enables type-aware linting
-				ecmaVersion: "latest",
-                sourceType: "module",
+				tsconfigRootDir: __dirname,
+				project: "./tsconfig.json",
 			},
 		},
 
+		// Rules: include the plugin's recommended rules and project-specific overrides
 		rules: {
 			...tsPlugin.configs.recommended.rules,
+			"prettier/prettier": "error",
 			"@typescript-eslint/no-unused-vars": [
 				"error",
 				{
@@ -67,10 +97,22 @@ export default defineConfig([
 					caughtErrors: "all",
 				},
 			],
-			"prettier/prettier": "error",
 		},
 	},
 
-	// 4. Prettier Config (Disables conflicting ESLint rules)
+	// =========================
+	// 4) Prettier integration for all source files
+	// =========================
+	// Register the Prettier plugin and report formatting issues as ESLint errors.
+	{
+		files: ["**/*.{js,jsx,ts,tsx,mjs,cjs}"],
+		plugins: { prettier: eslintPluginPrettier },
+		rules: { "prettier/prettier": ["error"] },
+	},
+
+	// =========================
+	// 5) Prettier flat config (last)
+	// =========================
+	// Disables ESLint rules that conflict with Prettier formatting decisions.
 	eslintConfigPrettier,
 ]);
