@@ -43,3 +43,54 @@ eslint.config.mjs
 tsconfig.json
 *.zip
 *.tgz
+
+# ==============================================================================
+# NPMIGNORE — Files excluded from published package
+# ==============================================================================
+# Purpose: Controls package contents uploaded to npm to keep tarball minimal.
+# Docs: https://docs.npmjs.com/cli/v9/configuring-npm/package-json#files
+# ==============================================================================
+
+# ==========================================
+# Development / Local
+# ==========================================
+/node_modules
+/.vscode
+/.husky
+/.github
+/.git
+
+# ==========================================
+# Testing & Reports
+# ==========================================
+/coverage
+/test
+/tests
+
+# ==========================================
+# Project Configs (kept locally but not published)
+# ==========================================
+.babelrc
+.editorconfig
+.prettierignore
+.prettierrc
+eslint.config.mjs
+tsconfig.json
+.release-it.json
+
+# ==========================================
+# Build artifacts
+# ==========================================
+# NOTE: `dist/` is intentionally commented out to include builds in the package.
+# Uncomment if you prefer to publish source-only and build in CI/publish pipeline.
+#/dist
+
+# ==========================================
+# Misc
+# ==========================================
+.DS_Store
+*.zip
+*.tgz
+*.tsbuildinfo
+.env
+.env.local

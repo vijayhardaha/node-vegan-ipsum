@@ -1,6 +1,6 @@
-###############################################################################
-#  PROJECT-WIDE CODE STYLE GUIDELINES
-###############################################################################
+# ==============================================================================
+# PROJECT-WIDE CODE STYLE GUIDELINES
+# ==============================================================================
 #
 # PURPOSE:
 #   This file ensures that every developer—regardless of their IDE (VS Code,
@@ -10,14 +10,14 @@
 #   - Ensure your IDE has the EditorConfig plugin installed.
 #   - Rules are applied top-to-bottom; specific patterns override general ones.
 #
-###############################################################################
+# ==============================================================================
 
 # Stop searching for other .editorconfig files in parent directories
 root = true
 
-###############################################################################
+# ==============================================================================
 # GLOBAL SETTINGS (Applied to all files)
-###############################################################################
+# ==============================================================================
 [*]
 # Ensure cross-platform compatibility with standard UTF-8 encoding
 charset = utf-8
@@ -38,9 +38,9 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 
 
-###############################################################################
+# ==============================================================================
 # OVERRIDES (Language-specific tweaks)
-###############################################################################
+# ==============================================================================
 
 # Documentation and Data: Use 2-space visual width for better readability
 [*.{md,yml,yaml}]
