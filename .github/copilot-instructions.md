@@ -1,67 +1,160 @@
 # Copilot Instructions
 
-This document provides a summary of the repository architecture, tooling, and conventions to assist GitHub Copilot in generating relevant code suggestions.
+This document provides architectural context, coding standards, and tooling configuration for GitHub Copilot. Adhering to these instructions ensures consistency across the codebase.
 
-## Tech Stack & Build System
+## 1. Tech Stack & Build System
 
-- **Language:** TypeScript.
+- **Language:** TypeScript (Strict mode enabled).
+- **Runtime Environment:** Node.js (>= 20).
 - **Build Tool:** Vite.
 - **Package Manager:** pnpm.
-- **Outputs:** Dual output support for ESM (`dist/index.mjs`) and CJS (`dist/index.cjs`).
-- **CLI:** Built as a separate CJS bundle with shebang injection via `vitebin.config.ts`.
-- **Types:** Declarations (`.d.ts`) are emitted to `types/` using `vite-plugin-dts`.
+- **Outputs:**
+    - Dual module support: ESM (`dist/index.mjs`) and CJS (`dist/index.cjs`).
+    - CLI Bundle: CJS only (`dist/bin/vegan-ipsum.bin.cjs`) with shebang injection.
+- **Types:** Declarations (`.d.ts`) emitted to `types/` via `vite-plugin-dts`.
 
-## Project Architecture
+## 2. Project Architecture
 
-The codebase is separated into library logic, CLI utilities, and core generation.
+The project is a library and CLI tool for generating vegan placeholder text.
 
-### 1. Entry Points & Public API
+### Core Structure
 
-- **Main Entry:** `src/index.ts`
-- **Public API:** Exports `veganIpsum` (instance) and `VeganIpsum` (class).
-- **Implementation:** Logic resides in `src/lib/VeganIpsum.ts`.
+- **Entry Point:** `src/index.ts` exports `veganIpsum` (instance) and `VeganIpsum` (class).
+- **Core Logic:**
+    - `src/lib/VeganIpsum.ts`: Main class implementation.
+    - `src/lib/generator.ts`: Core generation logic for words, sentences, and paragraphs.
+- **CLI:**
+    - `src/bin/vegan-ipsum.bin.ts`: Entry point for the CLI.
+    - `src/bin/util/index.ts`: Helpers for clipboard, platform detection, and versioning.
+- **Utilities:**
+    - `src/util/strings.ts`: String/array manipulation (`capitalize`, `rangeArray`).
+    - `src/util/env.ts`: Environment detection (`isNode`, `isReactNative`, `isWindows`).
+- **Constants:** `src/constants/` contains word lists and static values.
 
-### 2. Core Logic
+## 3. Coding Style & Formatting
 
-- **Generator:** `src/lib/generator.ts` contains the core logic for generating words, sentences, and paragraphs.
-- **Constants:** Word lists and constants are located in `src/constants/`.
+### General Rules
 
-### 3. Utilities
+- **Language:** Use English for code and comments.
+- **Naming Conventions:**
+    - **Components/Classes:** PascalCase (e.g., `VeganIpsum`, `Generator`).
+    - **Functions/Variables:** camelCase (e.g., `generateWords`, `capitalize`).
+    - **Files:** kebab-case for utilities/helpers (e.g., `strings.ts`, `env.ts`).
+    - **Constants:** SCREAMING_SNAKE_CASE (e.g., `MAX_SENTENCES`).
 
-- **String/Array Utils:** `src/util/strings.ts` (`capitalize`, `rangeArray`, `fillArrayWith`).
-- **Environment Detection:** `src/util/env.ts` (`isNode`, `isReactNative`, `isWindows`).
-- **CLI Helpers:** `src/bin/util/index.ts` (`copyToClipboard`, `getCopyCommand`, `getPlatform`).
+### Code Formatting (Prettier)
 
-## Code Style & Documentation
+You must follow the project's formatting configuration. If you cannot read the config file, apply the following defaults:
 
-- **Comments:** Use JSDoc-style comments for public APIs and core modules.
-- **Linting:** ESLint with TypeScript parser and Prettier integration (`eslint.config.mjs`).
-- **Formatting:** Prettier (`prettier.config.mjs`) and EditorConfig (`.editorconfig`).
-    - Use **tabs** for indentation.
-    - Enforce **LF** line endings.
-- **Types:** Public types (e.g., `VeganIpsumParams`) must be exported from `src/index.ts`.
+1. **Print Width:** 100 characters max.
+2. **Indentation:** 4 tabs (use tabs, not spaces).
+3. **Semicolons:** Do not add semicolons.
+4. **Quotes:** Use double quotes.
+5. **Trailing Commas:** Add trailing commas in multi-line objects (es5).
+6. **Bracket Spacing:** Add spaces inside object literals `{ key: value }`.
+7. **Arrow Function Parentheses:** Always use parentheses `(x) => x`.
+8. **Operator Position:** Place operators at the start of lines in multiline expressions.
 
-## Testing
+### Linting (ESLint)
 
-- **Framework:** Jest (configured in `package.json`).
+- **Imports:** Group imports: Node built-ins first, External libraries second, Internal modules third.
+- **Unused Vars:** Do not leave unused variables; prefix with `_` if intentionally unused.
+
+**Important:** Pre-format code blocks in your suggestions to match these rules.
+
+## 4. TypeScript Standards
+
+### Types vs Interfaces
+
+- Use **`interface`** for public API definitions and object shapes that might be extended.
+- Use **`type`** for union types, tuples, or computed types.
+
+```typescript
+// GOOD
+interface VeganIpsumParams {
+	count?: number;
+	units?: "sentences" | "paragraphs";
+}
+
+type Status = "idle" | "generating" | "error";
+```
+
+### Strictness
+
+- **NO `any`**: Always define proper types. Use `unknown` if type is uncertain.
+- **Non-null assertions:** Avoid `!`. Use optional chaining `?.` or logical checks.
+- **Exports:** Public types must be re-exported from `src/index.ts`.
+
+## 5. Documentation (JSDoc)
+
+- Add JSDoc comments for all exported functions, classes, and complex types.
+- Do not add JSDoc for obvious props or simple utilities.
+
+```typescript
+/**
+ * Generates a specified number of vegan-themed sentences.
+ *
+ * @param {number} count - The number of sentences to generate.
+ * @returns An array of generated sentences.
+ * @throws {Error} If count is negative.
+ */
+export function generateSentences(count: number): string[] {
+	// implementation
+}
+```
+
+## 6. Testing
+
+- **Framework:** Vitest (configured via `vitest.config.ts`).
 - **Locations:**
-    - Unit tests: `src/**` and `tests/**` (e.g., `src/lib/generator.test.ts`).
-    - Local interop sanity checks: `tests/local/` (includes ESM, CJS, and interop scripts).
-- **Commands:**
-    - `pnpm run test`: Run Jest suite.
+    - Unit tests: `src/**` (co-located, e.g., `generator.test.ts`).
+    - Interop tests: `tests/local/` (manual ESM/CJS checks).
+- **Execution:**
+    - `pnpm run test`: Run the Vitest suite.
     - `pnpm run test:local`: Run manual interop checks.
+- **Notes:**
+    - Prefer `vi` for spies/mocks (replacement for Jest's `jest`).
+    - Use async/await and `expect(...).resolves/rejects` with Vitest; avoid deprecated `done` callbacks.
+    - Ensure `vitest` types are included in `tsconfig.json` so test globals are typed.
+- **Helpers:** Use `data-testid` for stable queries if UI testing is involved.
 
-## Build & Distribution Commands
+## 7. Build, Lint, and Scripts
 
-- **Build All:** `pnpm run build` (Cleans, builds types, JS, and CLI binary).
-- **Build Library:** `pnpm run build:js` (Uses `vite.config.ts`).
-- **Build CLI:** `pnpm run build:bin` (Uses `vitebin.config.ts`).
-- **Linting:** `pnpm run lint` (ESLint).
-- **Formatting:** `pnpm run format` (Prettier).
+- **Build:**
+    - `pnpm run build`: Cleans, builds types, JS (ESM/CJS), and CLI binary.
+    - `pnpm run build:js`: Library build via `vite.config.ts`.
+    - `pnpm run build:bin`: CLI build via `vitebin.config.ts`.
+- **Lint/Format:**
+    - `pnpm run lint`: ESLint checks.
+    - `pnpm run format`: Prettier auto-fix.
+    - `pnpm run format:check`: Prettier validation.
+- **Utilities:**
+    - `pnpm run types`: Type checking.
 
-## Key Configuration Notes
+## 8. Conventional Commits
 
-- **TypeScript:** `tsconfig.json` uses `module: commonjs` for type checking, while Vite outputs both ESM and CJS.
-- **Exports:** `package.json` defines conditional exports for dual resolution.
-- **Node Version:** Requires Node >= 20.
-- **NPM Package:** `.npmignore` is configured to include the `dist/` directory in published packages.
+Use Conventional Commit messages for all changes.
+
+```
+<type>(<scope>): <summary>
+```
+
+**Common Types:**
+
+- `feat`: New functionality (e.g., `feat(cli): add copy to clipboard flag`).
+- `fix`: Bug fix (e.g., `fix(generator): handle empty array input`).
+- `docs`: Documentation only.
+- `refactor`: Code changes without behavior change.
+- `build`: Build tooling or config changes (e.g., `build: update vite config`).
+
+**Rules:**
+
+- Use a 50-character subject line.
+- Use lowercase.
+- Body (optional) wrapped at 72 characters.
+
+## 9. Configuration Gotchas
+
+- **TypeScript Config:** `tsconfig.json` uses `module: commonjs` for type checking/declaration emission, while Vite outputs both ESM and CJS.
+- **Package Exports:** Defined in `package.json` for dual entry points.
+- **NPM Package:** `.npmignore` includes `dist/` in the published package.
