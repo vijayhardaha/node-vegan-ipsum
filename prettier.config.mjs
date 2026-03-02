@@ -12,38 +12,36 @@
 
 /** @type {import("prettier").Config} */
 const config = {
-  // --- Layout & Spacing ---
-  printWidth: 80, // Max line length before wrapping
-  tabWidth: 4, // Visual width of a tab
-  useTabs: true, // Use actual tabs
+	// --- Layout & Spacing ---
+	printWidth: 80, // Max line length before wrapping
+	tabWidth: 4, // Visual width of a tab
+	useTabs: true, // Use actual tabs
 
-  // --- General Syntax ---
-  semi: true, // Always use semicolons
-  singleQuote: false, // Double quotes (standard for HTML/React props)
-  endOfLine: "auto", // Maintains existing line endings
+	// --- General Syntax ---
+	semi: true, // Always use semicolons
+	singleQuote: false, // Double quotes (standard for HTML/React props)
+	endOfLine: "auto", // Maintains existing line endings
 
-  // --- Logic & Functions ---
-  arrowParens: "always", // (x) => {} instead of x => {}
-  trailingComma: "es5", // Commas where valid in ES5
-  bracketSpacing: true, // { foo: bar }
-  bracketSameLine: false, // Puts > on a new line
-  proseWrap: "preserve", // Respect manual line breaks
-  experimentalOperatorPosition: "start", // Align operators in multiline expressions
-  objectWrap: "collapse", // Preserve existing wrapping of objects
+	// --- Logic & Functions ---
+	arrowParens: "always", // (x) => {} instead of x => {}
+	trailingComma: "es5", // Commas where valid in ES5
+	bracketSpacing: true, // { foo: bar }
+	bracketSameLine: false, // Puts > on a new line
+	proseWrap: "preserve", // Respect manual line breaks
+	experimentalOperatorPosition: "start", // Align operators in multiline expressions
+	objectWrap: "collapse", // Preserve existing wrapping of objects
 
-  // --- Plugins ---
-  // Note: In CJS, some plugins must be required if not auto-loaded
-  // plugins: ["prettier-plugin-tailwindcss"],
+	// --- Plugins ---
+	// Note: In CJS, some plugins must be required if not auto-loaded
+	// plugins: ["prettier-plugin-tailwindcss"],
 
-  overrides: [
-    {
-      // --- Override for JSON files to disable trailing commas ---
-      files: ["*.json", "*.jsonc"],
-      options: {
-        trailingComma: "none",
-      },
-    },
-  ],
+	overrides: [
+		{
+			// --- Override for JSON files to disable trailing commas ---
+			files: ["*.json", "*.jsonc"],
+			options: { trailingComma: "none" },
+		},
+	],
 };
 
 export default config;
