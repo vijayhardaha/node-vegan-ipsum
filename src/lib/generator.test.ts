@@ -24,7 +24,7 @@ describe("generator", () => {
 		} catch (error) {
 			// Expect an error to be thrown with a specific message
 			expect(error).toBeDefined();
-			expect(error.message).toEqual(
+			expect((error as Error).message).toEqual(
 				`Minimum number of sentences per paragraph (7) cannot exceed maximum (1).`
 			);
 		}
@@ -39,7 +39,7 @@ describe("generator", () => {
 		} catch (error) {
 			// Expect an error to be thrown with a specific message
 			expect(error).toBeDefined();
-			expect(error.message).toEqual(
+			expect((error as Error).message).toEqual(
 				`Minimum number of words per sentence (7) cannot exceed maximum (1).`
 			);
 		}
