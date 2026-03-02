@@ -1,7 +1,6 @@
 import fs from "fs";
 
 import nockExec from "nock-exec";
-
 import ProcessHelper from "../../../tests/util/ProcessHelper";
 import { SUPPORTED_PLATFORMS } from "../../constants";
 import { COPY, CANNOT_DETERMINE_PLATFORM } from "../constants";
@@ -37,7 +36,9 @@ describe("bin util functions", () => {
 		/**
 		 * Reset the platform to its original state after each test.
 		 */
-		afterEach(() => process.resetPlatform());
+		afterEach(() => {
+			process.resetPlatform();
+		});
 
 		/**
 		 * Test case: Should throw an error if the platform is not supported.
@@ -88,6 +89,42 @@ describe("bin util functions", () => {
 				// Expect the error message to match the mocked error message from nockExec
 				expect(error.message).toEqual(errorMessage);
 			});
+		});
+
+		/**
+		 * Test case: Should reject when exec callback receives an error.
+		 * This simulates a failure in the underlying system command used for copying to the clipboard.
+		 */
+		test("rejects when exec callback receives an error", async () => {
+			process.setPlatform(SUPPORTED_PLATFORMS.WIN32);
+
+			// Mock exec for this test
+			const execMock = vi.fn();
+			vi.doMock("child_process", () => ({ exec: execMock }));
+
+			// clear module cache
+			vi.resetModules();
+
+			const callbackError = new Error("exec failed");
+			execMock.mockImplementation(
+				(
+					_command: string,
+					callback: (
+						error: Error | null,
+						stdout: string,
+						stderr: string
+					) => void
+				) => {
+					callback(callbackError, "", "");
+					return undefined;
+				}
+			);
+
+			const { copyToClipboard } = await import(".");
+
+			await expect(copyToClipboard("Some string")).rejects.toBe(
+				callbackError
+			);
 		});
 	});
 
