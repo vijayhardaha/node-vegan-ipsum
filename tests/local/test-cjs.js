@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable no-undef */
 // Simple CommonJS consumer test
 const pkg = require("../../dist/index.cjs");
 console.log("CJS exports:", Object.keys(pkg));

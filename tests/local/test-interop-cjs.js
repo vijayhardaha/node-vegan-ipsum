@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable no-undef */
 // CJS interop check (default vs named)
 const pkg = require("../../dist/index.cjs");
 const main = pkg.default ?? pkg;
