@@ -86,6 +86,7 @@ vegan-ipsum 2 paragraphs --format html
 - npm: >= 9.x
 
 Ensure you are using a supported Node.js LTS. Recommended install via nvm:
+
 ```bash
 nvm install --lts
 nvm use --lts
