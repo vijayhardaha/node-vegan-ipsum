@@ -34,6 +34,7 @@ class VeganIpsum {
 			);
 		}
 		this.generator = new Generator(options);
+		this.suffix = suffix;
 	}
 
 	/**

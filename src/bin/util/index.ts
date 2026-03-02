@@ -57,30 +57,32 @@ const getCopyCommand = (platform: string = ""): string => {
  * @throws {Error} If the platform is not supported or if the copy command fails.
  */
 const copyToClipboard = (text: string): Promise<string> => {
-	return new Promise(
-		(resolve: (text: string) => void, reject: (error: Error) => void) => {
-			try {
-				const platform = getPlatform();
-				if (isSupportedPlatform(platform) === false) {
-					throw new Error(`Copy is not supported for ${platform}`);
-				}
-				const command = `echo "${text}" | ${getCopyCommand(platform)}`;
-				exec(command, (error, stdout, stderr) => {
-					if (error) {
-						return reject(error);
-					}
-
-					if (stderr) {
-						return reject(new Error(stderr));
-					}
-
-					return resolve(text);
-				});
-			} catch (error) {
-				return reject(error as Error);
+	// Remove the types inside the parentheses.
+	// TypeScript knows 'resolve' takes a string because of Promise<string> above.
+	return new Promise<string>((resolve, reject) => {
+		try {
+			const platform = getPlatform();
+			if (isSupportedPlatform(platform) === false) {
+				throw new Error(`Copy is not supported for ${platform}`);
 			}
+			const command = `echo "${text}" | ${getCopyCommand(platform)}`;
+
+			// Fix the unused args here as well (use _stdout)
+			exec(command, (error, _stdout, stderr) => {
+				if (error) {
+					return reject(error);
+				}
+
+				if (stderr) {
+					return reject(new Error(stderr));
+				}
+
+				return resolve(text);
+			});
+		} catch (error) {
+			return reject(error as Error);
 		}
-	);
+	});
 };
 
 /**
