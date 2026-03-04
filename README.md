@@ -113,9 +113,9 @@ nvm install --lts
 nvm use --lts
 ```
 
-## Project
+---
 
-## Ecosystem
+## Project Ecosystem
 
 Explore the wider vegan-ipsum ecosystem and integrations:
 
@@ -123,6 +123,8 @@ Explore the wider vegan-ipsum ecosystem and integrations:
 - **About:** https://veganipsum.vercel.app/about — background, goals, and maintainers.
 - **JSON API:** https://veganipsum.vercel.app/json-api — programmatic endpoint for generating vegan ipsum.
 - **VS Code extension:** https://veganipsum.vercel.app/vscode-extension — editor integration for inserting vegan ipsum.
+
+---
 
 ## License
 
