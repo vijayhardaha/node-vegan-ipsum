@@ -2,56 +2,57 @@
 
 All notable changes to this project are documented in this file.
 
-## Unreleased (2026-03-02)
+## v2.0.0 (2026-03-04)
 
-### Development
+### ⚠️ BREAKING CHANGES
 
-- Chore: Migrate build to Vite for faster builds and modern bundling.
-- Chore: Add `vitebin.config.ts` to build the CLI bin as CJS and inject a shebang.
-- Chore: Replace `gsed` bin exec with Vite-based bin build and `shebang-inject`.
-- Chore: Add `vite-plugin-dts` to emit TypeScript declaration files (`types/`).
-- Chore: Switch dist outputs to explicit `index.mjs` (ESM) and `index.cjs` (CJS).
-- Chore: Bump engines to Node.js >= 20.x and npm >= 9.x for development; update README to document these requirements.
-- Chore: Cleanup — remove unused Babel + Rollup devDependencies now that Vite handles bundling.
-- Docs: Update `.github/copilot-instructions.md` with architectural context, coding standards, and tooling guidance.
-- Fix: Add permissive TypeScript declaration `src/types/nock-exec.d.ts` to satisfy test imports.
-- Fix: Fix build issues related to Node built-ins (`child_process`) by requiring them in CLI code.
-- Refactor: Merge legacy `test/` directory into `tests/` and update imports to `tests/util/ProcessHelper.ts`.
-- Test: Add `test:local` and `tests/local/*` scripts/files to validate CJS/ESM interop locally.
+- **Runtime:** Dropped support for Node.js < 20. The engine requirement is now `>= 20.x`.
 
-### Production
+### ✨ Features
 
-- Build: Dist now includes both ESM (`dist/index.mjs`) and CJS (`dist/index.cjs`) bundles with source maps.
-- Build: CLI published as `dist/bin/vegan-ipsum.bin.cjs` with an injected shebang and executable bit.
-- Chore: Update `package.json` with `main`, `module`, and `exports` to support conditional ESM/CJS resolution.
-- Chore: Bump `package.json` engines to require Node.js >= 20.x and npm >= 9.x; update README to reflect runtime requirements.
+- **Build:** Migrated from Rollup/Babel to **Vite** for faster builds and modern bundling.
+- **Build:** Added dual output support, shipping explicit ESM (`dist/index.mjs`) and CJS (`dist/index.cjs`) bundles with source maps.
+- **Types:** Added TypeScript declaration generation to `types/` via `vite-plugin-dts`.
+- **CLI:** Refactored binary build to output as CJS with an injected shebang.
+
+### 🐛 Fixes
+
+- Resolved build issues regarding Node built-ins (`child_process`) in CLI code.
+- Added TypeScript declaration for `nock-exec` to satisfy test imports.
+
+### 📦 Chores
+
+- Removed unused Babel and Rollup devDependencies.
+- Updated `package.json` exports and engines for modern Node.js compatibility.
+- Merged legacy `test/` directory into `tests/` and added local interop validation helpers.
+- Updated documentation with architectural context and tooling guidance.
+
+> **Note:** If v2.0.0 doesn't work for you, please use version **1.0.4**.
 
 ## v1.0.4 (2026-02-17)
 
-- Chore: bump dependencies to latest versions for improved performance and security
-- Chore: enhance testing setup for better coverage and reliability
-- Chore: update dependencies to latest versions for improved performance and security
-- Chore: update release configuration for better automation and consistency
-- Docs: update readme with latest changes and usage instructions
-- Fix: correct some typos in code comments and documentation
-- Fix: fix eslint configuration for better compatibility with latest eslint version
-- Fix: resolve some issues with nockExec function for better error handling and flexibility
-- Refactor: consolidate constants into fewer files for better maintainability
-- Refactor: restructure project files for better organization and clarity
-- Refactor: update utility functions for better readability and maintainability
+- Chore: Bump dependencies to latest versions for security and performance.
+- Chore: Enhance testing setup for better coverage and reliability.
+- Chore: Update release configuration for improved automation.
+- Docs: Update README with latest changes and usage instructions.
+- Fix: Correct typos in code comments and documentation.
+- Fix: Update ESLint configuration for latest version compatibility.
+- Fix: Resolve issues with `nockExec` function for better error handling.
+- Refactor: Consolidate constants and restructure project files for better maintainability.
+- Refactor: Update utility functions for improved readability.
 
 ## v1.0.3 (2025-05-04)
 
-- Chore: enhance typescript configuration for better type checking and code quality
+- Chore: Enhance TypeScript configuration for stricter type checking.
 
 ## v1.0.2 (2025-05-03)
 
-- Chore: ignore some config files from npm package
+- Chore: Ignore specific config files from the npm package.
 
 ## v1.0.1 (2025-05-03)
 
-- Fix: correct package link in readme description
+- Fix: Correct package link in README description.
 
 ## v1.0.0 (2025-05-03)
 
-- Chore: Initial release of node-vegan-ipsum
+- Chore: Initial release of node-vegan-ipsum.
