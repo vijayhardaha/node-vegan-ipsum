@@ -28,6 +28,7 @@
 .editorconfig
 .prettierignore
 .prettierrc
+.nvmrc
 eslint.config.mjs
 tsconfig.json
 .release-it.json
