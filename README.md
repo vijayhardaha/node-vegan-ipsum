@@ -8,11 +8,24 @@ Use it for vegan blogs, animal rights projects, or any site where you want meani
 
 Based on the [`lorem-ipsum`](https://github.com/knicklabs/lorem-ipsum.js) project by Nickolas Kenyeres.
 
+## Major updates (v2.0.0)
+
+- Node.js engine requirement bumped to >= 20.x (breaking change for older runtimes).
+- Build system migrated to Vite; distribution now ships both ESM (`dist/index.mjs`) and CJS (`dist/index.cjs`).
+- CLI is built as CJS with an injected shebang (`dist/bin/vegan-ipsum.bin.cjs`).
+- Type declarations are emitted to `types/` via `vite-plugin-dts`.
+
+> If v2.0.0 doesn't work for you, please use version `1.0.4`.
+
+---
+
 ## Installation
 
 ```bash
-npm i vegan-ipsum
+npm install vegan-ipsum
 ```
+
+---
 
 ## Using the Class
 
@@ -25,38 +38,46 @@ const vegan = new VeganIpsum({
 	wordsPerSentence: { min: 4, max: 16 },
 });
 
-vegan.generateWords(1);
-vegan.generateSentences(5);
-vegan.generateParagraphs(7);
+// Generate words, sentences, or paragraphs and print them
+const words = vegan.generateWords(6);
+console.log(words);
+
+const sentences = vegan.generateSentences(5);
+console.log(sentences);
+
+const paragraphs = vegan.generateParagraphs(2);
+console.log(paragraphs);
 ```
 
 ---
 
 ## Using the Function
 
-`vegan-ipsum` also supports a functional interface for simple, quick usage:
+`vegan-ipsum` also provides a simple functional interface for quick use-cases.
+
+ESM:
 
 ```js
-import { VeganIpsum } from "vegan-ipsum";
+import { veganIpsum } from "vegan-ipsum";
 
-VeganIpsum(); // generates one sentence
+// generate one sentence (default)
+console.log(veganIpsum());
+
+// generate three sentences
+console.log(veganIpsum({ count: 3, units: "sentences" }));
+
+// generate two paragraphs, HTML formatted
+console.log(veganIpsum({ count: 2, units: "paragraphs", format: "html" }));
 ```
 
-Customizable options:
+CommonJS:
 
 ```js
-VeganIpsum({
-	count: 1,
-	format: "plain", // "plain" or "html"
-	paragraphLowerBound: 3,
-	paragraphUpperBound: 7,
-	sentenceLowerBound: 5,
-	sentenceUpperBound: 15,
-	random: Math.random,
-	suffix: "\n",
-	units: "sentences", // "words", "sentences", or "paragraphs"
-});
+const { veganIpsum } = require("vegan-ipsum");
+console.log(veganIpsum({ count: 2 }));
 ```
+
+Customizable options (shorthand): `count`, `units` (`words|sentences|paragraphs`), `format` (`plain|html`), `sentenceLowerBound`, `sentenceUpperBound`, `paragraphLowerBound`, `paragraphUpperBound`, `random`, and `suffix`.
 
 ---
 
@@ -65,7 +86,7 @@ VeganIpsum({
 `vegan-ipsum` comes with a CLI tool to generate vegan text right from your terminal.
 
 ```bash
-npm i -g vegan-ipsum
+npm install -g vegan-ipsum
 ```
 
 ### Examples:
@@ -94,12 +115,16 @@ nvm use --lts
 
 ## Project
 
-This package is part of a small ecosystem around vegan-themed placeholder text. Related projects and integrations:
+## Ecosystem
 
-- JSON API: https://veganipsum.vercel.app/json-api
-- VS Code extension: https://veganipsum.vercel.app/vscode-extension
+Explore the wider vegan-ipsum ecosystem and integrations:
+
+- **Project site & landing:** https://veganipsum.vercel.app — central hub with links and docs.
+- **About:** https://veganipsum.vercel.app/about — background, goals, and maintainers.
+- **JSON API:** https://veganipsum.vercel.app/json-api — programmatic endpoint for generating vegan ipsum.
+- **VS Code extension:** https://veganipsum.vercel.app/vscode-extension — editor integration for inserting vegan ipsum.
 
 ## License
 
-This project is licensed under the [MIT License](./LICENSE).
-© 2025 Vijay Hardaha
+This project is licensed under the [MIT License](./LICENSE).\
+Copyright © 2025 Vijay Hardaha
