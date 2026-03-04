@@ -53,6 +53,3 @@ pnpm-lock.yaml
 
 # Ignore minified files which are intentionally unreadable
 *.min.*
-
-# Ignore config files which may contain complex structures not suited for Prettier
-.vscode/**/*.json
