@@ -1,40 +1,26 @@
-// ============================================================================
-// VSCODE WORKSPACE SETTINGS
-// ============================================================================
-// Purpose: Editor and formatter settings for contributors. Enables ESLint
-// and configures formatting + code actions on save for consistent developer
-// experience across machines.
-// Docs: https://code.visualstudio.com/docs/getstarted/settings
-// ============================================================================
 {
-	// ==========================================
-	// EDITOR & FORMATTING
-	// ==========================================
-	// Default formatter for the workspace. Used when formatting files manually.
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	// Controls whether the editor formats files automatically on save.
-	// Default: false
-	"editor.formatOnSave": false,
-	// Controls code-action behavior on save. Use explicit 'fixAll' for linters.
-	"editor.codeActionsOnSave": {
-		// Apply ESLint fixes on save explicitly.
-		"source.fixAll.eslint": "explicit",
-		// Apply stylelint fixes on save explicitly.
-		"source.fixAll.stylelint": "explicit"
-	},
+  // ======================================================================
+  // VS Code Workspace Settings
+  // ======================================================================
+  // Purpose: Configure formatter, ESLint, and editor behavior for consistency
+  // Docs: https://code.visualstudio.com/docs/getstarted/settings
+  // ======================================================================
 
-	// ==========================================
-	// ESLINT INTEGRATION
-	// ==========================================
-	// Enable the ESLint extension in VS Code for this workspace.
-	"eslint.enable": true,
-	// Allow ESLint to be used as a formatter when requested.
-	"eslint.format.enable": true,
-	// File types that ESLint should validate.
-	"eslint.validate": [
-		"javascript",
-		"javascriptreact",
-		"typescript",
-		"typescriptreact"
-	]
+  // ---- Formatting & Saving ----
+  // Use Prettier as the master formatter for this project
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // We disable `formatOnSave` because ESLint code actions handle formatting
+  "editor.formatOnSave": false,
+
+  "editor.codeActionsOnSave": {
+    // Automatically fix lint errors and trigger Prettier on every save
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // ---- Linter Integration ----
+  // Allow ESLint to handle formatting (via Prettier plugin)
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
 }
