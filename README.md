@@ -123,6 +123,12 @@ Explore the wider vegan-ipsum ecosystem and integrations:
 
 ---
 
+## Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](docs/CONTRIBUTING.md) and [Code of Conduct](docs/CODE_OF_CONDUCT.md) before getting started.
+
+---
+
 ## License
 
 This project is licensed under the [MIT License](./LICENSE).\
