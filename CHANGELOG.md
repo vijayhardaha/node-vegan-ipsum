@@ -1,8 +1,24 @@
 # Changelog
 
-All notable changes to this project are documented in this file.
+All notable changes to this project will be documented in this file.
 
-## v2.0.0 (2026-03-04)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [2.0.1] - 2026-04-06
+
+### Changed
+
+- Reverted ESM bundle extension from `.js` back to `.mjs` for better compatibility
+- Updated CLI binary output extension from `.cjs` to `.js`
+- Reordered `package.json` fields for better readability
+
+### Fixed
+
+- Corrected Vite SSR build to output CLI binary to proper path
+- Updated shebang injection to target correct file extension
+
+## [2.0.0] - 2026-03-04
 
 ### ⚠️ BREAKING CHANGES
 
@@ -29,30 +45,55 @@ All notable changes to this project are documented in this file.
 
 > **Note:** If v2.0.0 doesn't work for you, please use version **1.0.4**.
 
-## v1.0.4 (2026-02-17)
+## [1.0.4] - 2026-02-17
 
-- Chore: Bump dependencies to latest versions for security and performance.
-- Chore: Enhance testing setup for better coverage and reliability.
-- Chore: Update release configuration for improved automation.
-- Docs: Update README with latest changes and usage instructions.
-- Fix: Correct typos in code comments and documentation.
-- Fix: Update ESLint configuration for latest version compatibility.
-- Fix: Resolve issues with `nockExec` function for better error handling.
-- Refactor: Consolidate constants and restructure project files for better maintainability.
-- Refactor: Update utility functions for improved readability.
+### Changed
 
-## v1.0.3 (2025-05-04)
+- Bumped dependencies to latest versions for security and performance
+- Enhanced testing setup for better coverage and reliability
+- Updated release configuration for improved automation
+- Consolidated constants and restructured project files for better maintainability
+- Updated utility functions for improved readability
 
-- Chore: Enhance TypeScript configuration for stricter type checking.
+### Fixed
 
-## v1.0.2 (2025-05-03)
+- Corrected typos in code comments and documentation
+- Updated ESLint configuration for latest version compatibility
+- Resolved issues with `nockExec` function for better error handling
 
-- Chore: Ignore specific config files from the npm package.
+### Documentation
 
-## v1.0.1 (2025-05-03)
+- Updated README with latest changes and usage instructions
 
-- Fix: Correct package link in README description.
+## [1.0.3] - 2025-05-04
 
-## v1.0.0 (2025-05-03)
+### Changed
 
-- Chore: Initial release of node-vegan-ipsum.
+- Enhanced TypeScript configuration for stricter type checking
+
+## [1.0.2] - 2025-05-03
+
+### Changed
+
+- Excluded specific config files from the npm package
+
+## [1.0.1] - 2025-05-03
+
+### Fixed
+
+- Corrected package link in README description
+
+## [1.0.0] - 2025-05-03
+
+### Added
+
+- Initial release of node-vegan-ipsum
+
+[Unreleased]: https://github.com/vijayhardaha/node-vegan-ipsum/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/vijayhardaha/node-vegan-ipsum/compare/v2.0.0...v2.0.1
+[2.0.0]: https://github.com/vijayhardaha/node-vegan-ipsum/releases/tag/v2.0.0
+[1.0.4]: https://github.com/vijayhardaha/node-vegan-ipsum/compare/v1.0.3...v1.0.4
+[1.0.3]: https://github.com/vijayhardaha/node-vegan-ipsum/compare/v1.0.2...v1.0.3
+[1.0.2]: https://github.com/vijayhardaha/node-vegan-ipsum/compare/v1.0.1...v1.0.2
+[1.0.1]: https://github.com/vijayhardaha/node-vegan-ipsum/compare/v1.0.0...v1.0.1
+[1.0.0]: https://github.com/vijayhardaha/node-vegan-ipsum/releases/tag/v1.0.0
