@@ -19,7 +19,7 @@ const shebangPlugin = (shebang = '#!/usr/bin/env node') => {
     generateBundle(_options, bundle: OutputBundle) {
       for (const fileName of Object.keys(bundle)) {
         const chunk = bundle[fileName];
-        if (chunk && chunk.type === 'chunk' && fileName.endsWith('.cjs')) {
+        if (chunk && chunk.type === 'chunk' && fileName.endsWith('.js')) {
           chunk.code = `${shebang}\n${chunk.code}`;
         }
       }
@@ -35,14 +35,19 @@ export default defineConfig({
     // Single CJS output for the CLI
     lib: {
       entry: 'src/bin/vegan-ipsum.bin.ts',
-      name: 'vegan-ipsum-bin',
       formats: ['cjs'],
-      fileName: () => 'bin/vegan-ipsum.bin.cjs',
+      fileName: (_format, entryName) => {
+        return `${entryName}.js`;
+      },
     },
 
     // Treat runtime-only dependencies and Node built-ins as external
-    rollupOptions: { external: ['commander', 'child_process'] },
+    rollupOptions: {
+      external: ['commander', 'child_process'],
+      output: { entryFileNames: 'bin/vegan-ipsum.bin.js', chunkFileNames: 'bin/[name].js' },
+    },
 
+    ssr: true,
     outDir: 'dist',
     sourcemap: true,
 
