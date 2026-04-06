@@ -35,9 +35,6 @@
   "bugs": {
     "url": "https://github.com/vijayhardaha/node-vegan-ipsum/issues"
   },
-  "bin": {
-    "vegan-ipsum": "dist/bin/vegan-ipsum.bin.cjs"
-  },
   "files": [
     "dist",
     "src",
@@ -46,12 +43,15 @@
     "README.md"
   ],
   "main": "dist/index.cjs",
-  "module": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "types/src/index.d.ts",
+  "bin": {
+    "vegan-ipsum": "dist/bin/vegan-ipsum.bin.js"
+  },
   "exports": {
     ".": {
       "types": "./types/src/index.d.ts",
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
     "./bin/vegan-ipsum.bin.js": {
