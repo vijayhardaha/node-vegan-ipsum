@@ -11,4 +11,6 @@
 
 import { createConfig } from '@vijayhardaha/dev-config/eslint/ts';
 
-export default createConfig();
+const config = createConfig();
+
+export default [...config, { ignores: ['**/*.d.ts', 'types/**'] }];
