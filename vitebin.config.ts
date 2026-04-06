@@ -7,52 +7,48 @@
  * ==============================================================================
  */
 
-import type { OutputBundle, Plugin } from "rollup";
-import { defineConfig } from "vite";
+import type { OutputBundle, Plugin } from 'rollup';
+import { defineConfig } from 'vite';
 
 // -------------------------
 // Shebang injector plugin
 // -------------------------
-const shebangPlugin = (shebang = "#!/usr/bin/env node") => {
-	return {
-		name: "shebang-inject",
-		generateBundle(_options, bundle: OutputBundle) {
-			for (const fileName of Object.keys(bundle)) {
-				const chunk = bundle[fileName];
-				if (
-					chunk
-					&& chunk.type === "chunk"
-					&& fileName.endsWith(".cjs")
-				) {
-					chunk.code = `${shebang}\n${chunk.code}`;
-				}
-			}
-		},
-	} as Plugin;
+const shebangPlugin = (shebang = '#!/usr/bin/env node') => {
+  return {
+    name: 'shebang-inject',
+    generateBundle(_options, bundle: OutputBundle) {
+      for (const fileName of Object.keys(bundle)) {
+        const chunk = bundle[fileName];
+        if (chunk && chunk.type === 'chunk' && fileName.endsWith('.cjs')) {
+          chunk.code = `${shebang}\n${chunk.code}`;
+        }
+      }
+    },
+  } as Plugin;
 };
 
 // -------------------------
 // Vite config for CLI
 // -------------------------
 export default defineConfig({
-	build: {
-		// Single CJS output for the CLI
-		lib: {
-			entry: "src/bin/vegan-ipsum.bin.ts",
-			name: "vegan-ipsum-bin",
-			formats: ["cjs"],
-			fileName: () => "bin/vegan-ipsum.bin.cjs",
-		},
+  build: {
+    // Single CJS output for the CLI
+    lib: {
+      entry: 'src/bin/vegan-ipsum.bin.ts',
+      name: 'vegan-ipsum-bin',
+      formats: ['cjs'],
+      fileName: () => 'bin/vegan-ipsum.bin.cjs',
+    },
 
-		// Treat runtime-only dependencies and Node built-ins as external
-		rollupOptions: { external: ["commander", "child_process"] },
+    // Treat runtime-only dependencies and Node built-ins as external
+    rollupOptions: { external: ['commander', 'child_process'] },
 
-		outDir: "dist",
-		sourcemap: true,
+    outDir: 'dist',
+    sourcemap: true,
 
-		// Don't empty dist here; primary library build empties it
-		emptyOutDir: false,
-	},
+    // Don't empty dist here; primary library build empties it
+    emptyOutDir: false,
+  },
 
-	plugins: [shebangPlugin()],
+  plugins: [shebangPlugin()],
 });

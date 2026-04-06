@@ -33,10 +33,7 @@ npm install vegan-ipsum
 import { VeganIpsum } from "vegan-ipsum";
 // const VeganIpsum = require("vegan-ipsum").VeganIpsum;
 
-const vegan = new VeganIpsum({
-	sentencesPerParagraph: { min: 4, max: 8 },
-	wordsPerSentence: { min: 4, max: 16 },
-});
+const vegan = new VeganIpsum({ sentencesPerParagraph: { min: 4, max: 8 }, wordsPerSentence: { min: 4, max: 16 } });
 
 // Generate words, sentences, or paragraphs and print them
 const words = vegan.generateWords(6);

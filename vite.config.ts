@@ -7,38 +7,38 @@
  * ==============================================================================
  */
 
-import { defineConfig } from "vite";
-import dts from "vite-plugin-dts";
+import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
 
 // -------------------------
 // Build configuration
 // -------------------------
 export default defineConfig({
-	build: {
-		// Produce source maps for easier debugging in consumers
-		sourcemap: true,
+  build: {
+    // Produce source maps for easier debugging in consumers
+    sourcemap: true,
 
-		// Clean `dist/` before building (primary library build)
-		emptyOutDir: true,
+    // Clean `dist/` before building (primary library build)
+    emptyOutDir: true,
 
-		// Library mode: entry + output naming
-		lib: {
-			entry: "src/index.ts",
-			name: "vegan-ipsum",
-			formats: ["es", "cjs"],
-			fileName: (format) => (format === "es" ? "index.mjs" : "index.cjs"),
-		},
+    // Library mode: entry + output naming
+    lib: {
+      entry: 'src/index.ts',
+      name: 'vegan-ipsum',
+      formats: ['es', 'cjs'],
+      fileName: (format) => (format === 'es' ? 'index.mjs' : 'index.cjs'),
+    },
 
-		// Ensure named exports for consumers
-		rollupOptions: { output: { exports: "named" } },
+    // Ensure named exports for consumers
+    rollupOptions: { output: { exports: 'named' } },
 
-		// Explicit output directory
-		outDir: "dist",
-	},
+    // Explicit output directory
+    outDir: 'dist',
+  },
 
-	// -------------------------
-	// Plugins
-	// -------------------------
-	// Emit declarations into `types/` and create a types entry
-	plugins: [dts({ insertTypesEntry: true, outDir: "types" })],
+  // -------------------------
+  // Plugins
+  // -------------------------
+  // Emit declarations into `types/` and create a types entry
+  plugins: [dts({ insertTypesEntry: true, outDir: 'types' })],
 });

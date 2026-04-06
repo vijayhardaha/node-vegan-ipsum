@@ -13,13 +13,13 @@
     "baseUrl": "./",
     "paths": { "@/*": ["./src/*"] },
     "target": "esnext",
-		"module": "esnext",
-		// ==========================================
-		// TYPE OUTPUT
-		// ==========================================
-		// Emit declaration files into `types/` for consumers.
-		"declaration": true,
-		"declarationDir": "types",
+    "module": "esnext",
+    // ==========================================
+    // TYPE OUTPUT
+    // ==========================================
+    // Emit declaration files into `types/` for consumers.
+    "declaration": true,
+    "declarationDir": "types",
     "types": ["vitest/globals", "node"]
   },
 
@@ -34,7 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.mjs",
-    "**/*.cjs",
+    "**/*.cjs"
   ],
 
   // ---- Excludes ----
