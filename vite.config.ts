@@ -26,7 +26,7 @@ export default defineConfig({
       entry: 'src/index.ts',
       name: 'vegan-ipsum',
       formats: ['es', 'cjs'],
-      fileName: (format) => (format === 'es' ? 'index.mjs' : 'index.cjs'),
+      fileName: (format) => (format === 'es' ? 'index.js' : 'index.cjs'),
     },
 
     // Ensure named exports for consumers

@@ -1,5 +1,5 @@
 // Simple ESM consumer test
-import * as pkg from '../../dist/index.mjs';
+import * as pkg from '../../dist/index.js';
 console.log('ESM keys:', Object.keys(pkg));
 if (typeof pkg.veganIpsum === 'function') {
   console.log('veganIpsum() ->', pkg.veganIpsum());

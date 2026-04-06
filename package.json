@@ -5,7 +5,7 @@
   "scripts": {
     "build:js": "vite build",
     "build:bin": "vite build --config vitebin.config.ts",
-    "build:exec": "chmod +x dist/bin/vegan-ipsum.bin.cjs",
+    "build:exec": "chmod +x dist/bin/vegan-ipsum.bin.js",
     "build": "pnpm run build:js && pnpm run build:bin && pnpm run build:exec",
     "postbuild": "find ./types -type f -name \"*.config.d*\" -delete && rm -rf types/tests/local/",
     "lint": "eslint . --ext .ts,.tsx,.js,.mjs",
@@ -46,16 +46,16 @@
     "README.md"
   ],
   "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
+  "module": "dist/index.js",
   "types": "types/src/index.d.ts",
   "exports": {
     ".": {
       "types": "./types/src/index.d.ts",
-      "import": "./dist/index.mjs",
+      "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
     "./bin/vegan-ipsum.bin.js": {
-      "require": "./dist/bin/vegan-ipsum.bin.cjs"
+      "require": "./dist/bin/vegan-ipsum.bin.js"
     }
   },
   "keywords": [
