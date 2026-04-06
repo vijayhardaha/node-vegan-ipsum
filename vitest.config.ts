@@ -1,15 +1,15 @@
-import { defineConfig } from "vitest/config";
-
 /**
  * ======================================================================
  * VITEST CONFIG
  * ======================================================================
  * Purpose: Configure Vitest for unit testing in a Node environment. This
- * file keeps test runner behaviour, globals, and coverage settings in one
- * place so contributors can run tests consistently.
- * Docs: https://vitest.dev/config/
+ *          file keeps test runner behaviour, globals, and coverage
+ *          settings in one place so contributors can run tests consistently.
+ * Docs:    https://vitest.dev/config/
  * ======================================================================
  */
+
+ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
 	test: {

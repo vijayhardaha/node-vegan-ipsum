@@ -3,7 +3,7 @@
  * VITE BIN CONFIG — CLI Build (CJS)
  * ==============================================================================
  * Purpose: Build the CLI entry as a single CJS bundle and inject a shebang.
- * Docs: https://vitejs.dev/guide/build.html
+ * Docs:    https://vitejs.dev/guide/build.html
  * ==============================================================================
  */
 

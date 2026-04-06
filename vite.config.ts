@@ -3,7 +3,7 @@
  * VITE CONFIG — Library Build (ESM + CJS)
  * ==============================================================================
  * Purpose: Build the library into dual formats (ESM/CJS) and emit type declarations.
- * Docs: https://vitejs.dev/guide/build.html
+ * Docs:    https://vitejs.dev/guide/build.html
  * ==============================================================================
  */
 
