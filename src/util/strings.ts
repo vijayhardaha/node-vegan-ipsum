@@ -5,8 +5,8 @@
  * @returns {string} The input string with the first character capitalized.
  */
 export const capitalize = (str: string): string => {
-	const trimmed = str.trim();
-	return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+  const trimmed = str.trim();
+  return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
 };
 
 /**
@@ -16,7 +16,7 @@ export const capitalize = (str: string): string => {
  * @returns {number[]} An array of indexes from 0 to `length - 1`.
  */
 export const rangeArray = (length: number = 0): number[] => {
-	return [...Array(length)].map((_: unknown, index: number): number => index);
+  return [...Array(length)].map((_: unknown, index: number): number => index);
 };
 
 /**
@@ -26,12 +26,9 @@ export const rangeArray = (length: number = 0): number[] => {
  * @param {() => string} makeString - A function that generates a string for each element.
  * @returns {string[]} An array of strings of the specified length.
  */
-export const fillArrayWith = (
-	length: number,
-	makeString: () => string
-): string[] => {
-	const arr = rangeArray(length);
-	return arr.map(() => makeString());
+export const fillArrayWith = (length: number, makeString: () => string): string[] => {
+  const arr = rangeArray(length);
+  return arr.map(() => makeString());
 };
 
 export default { capitalize, rangeArray, fillArrayWith };

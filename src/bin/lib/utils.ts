@@ -1,8 +1,8 @@
-import { exec } from "child_process";
+import { exec } from 'child_process';
 
-import { version } from "../../../package.json";
-import { SUPPORTED_PLATFORMS } from "../../constants";
-import { COPY, CANNOT_DETERMINE_PLATFORM } from "./constants";
+import { COPY, CANNOT_DETERMINE_PLATFORM } from './constants';
+import { version } from '../../../package.json';
+import { SUPPORTED_PLATFORMS } from '../../constants';
 
 /**
  * Retrieves the current process platform.
@@ -11,11 +11,11 @@ import { COPY, CANNOT_DETERMINE_PLATFORM } from "./constants";
  * @throws {Error} If the platform cannot be determined.
  */
 const getPlatform = (): string => {
-	if (!process || typeof process.platform !== "string") {
-		throw new Error(CANNOT_DETERMINE_PLATFORM);
-	}
+  if (!process || typeof process.platform !== 'string') {
+    throw new Error(CANNOT_DETERMINE_PLATFORM);
+  }
 
-	return process.platform;
+  return process.platform;
 };
 
 /**
@@ -25,10 +25,7 @@ const getPlatform = (): string => {
  * @returns {boolean} `true` if the platform is supported, otherwise `false`.
  */
 const isSupportedPlatform = (platform: string): boolean => {
-	return (
-		Object.values(SUPPORTED_PLATFORMS).indexOf(platform.toLowerCase())
-		!== -1
-	);
+  return Object.values(SUPPORTED_PLATFORMS).indexOf(platform.toLowerCase()) !== -1;
 };
 
 /**
@@ -37,16 +34,16 @@ const isSupportedPlatform = (platform: string): boolean => {
  * @param {string} platform - The process platform (e.g., "darwin", "win32", "linux").
  * @returns {string} The copy command for the specified platform.
  */
-const getCopyCommand = (platform: string = ""): string => {
-	switch (platform.toLowerCase()) {
-		case SUPPORTED_PLATFORMS.DARWIN:
-			return COPY.DARWIN;
-		case SUPPORTED_PLATFORMS.WIN32:
-			return COPY.WIN32;
-		case SUPPORTED_PLATFORMS.LINUX:
-		default:
-			return COPY.LINUX;
-	}
+const getCopyCommand = (platform: string = ''): string => {
+  switch (platform.toLowerCase()) {
+    case SUPPORTED_PLATFORMS.DARWIN:
+      return COPY.DARWIN;
+    case SUPPORTED_PLATFORMS.WIN32:
+      return COPY.WIN32;
+    case SUPPORTED_PLATFORMS.LINUX:
+    default:
+      return COPY.LINUX;
+  }
 };
 
 /**
@@ -57,32 +54,32 @@ const getCopyCommand = (platform: string = ""): string => {
  * @throws {Error} If the platform is not supported or if the copy command fails.
  */
 const copyToClipboard = (text: string): Promise<string> => {
-	// Remove the types inside the parentheses.
-	// TypeScript knows 'resolve' takes a string because of Promise<string> above.
-	return new Promise<string>((resolve, reject) => {
-		try {
-			const platform = getPlatform();
-			if (isSupportedPlatform(platform) === false) {
-				throw new Error(`Copy is not supported for ${platform}`);
-			}
-			const command = `echo "${text}" | ${getCopyCommand(platform)}`;
+  // Remove the types inside the parentheses.
+  // TypeScript knows 'resolve' takes a string because of Promise<string> above.
+  return new Promise<string>((resolve, reject) => {
+    try {
+      const platform = getPlatform();
+      if (isSupportedPlatform(platform) === false) {
+        throw new Error(`Copy is not supported for ${platform}`);
+      }
+      const command = `echo "${text}" | ${getCopyCommand(platform)}`;
 
-			// Fix the unused args here as well (use _stdout)
-			exec(command, (error, _stdout, stderr) => {
-				if (error) {
-					return reject(error);
-				}
+      // Fix the unused args here as well (use _stdout)
+      exec(command, (error, _stdout, stderr) => {
+        if (error) {
+          return reject(error);
+        }
 
-				if (stderr) {
-					return reject(new Error(stderr));
-				}
+        if (stderr) {
+          return reject(new Error(stderr));
+        }
 
-				return resolve(text);
-			});
-		} catch (error) {
-			return reject(error as Error);
-		}
-	});
+        return resolve(text);
+      });
+    } catch (error) {
+      return reject(error as Error);
+    }
+  });
 };
 
 /**
@@ -92,10 +89,4 @@ const copyToClipboard = (text: string): Promise<string> => {
  */
 const getVersion = (): string => version;
 
-export {
-	copyToClipboard,
-	getCopyCommand,
-	getPlatform,
-	getVersion,
-	isSupportedPlatform,
-};
+export { copyToClipboard, getCopyCommand, getPlatform, getVersion, isSupportedPlatform };
