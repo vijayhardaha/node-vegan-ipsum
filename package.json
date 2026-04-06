@@ -1,96 +1,113 @@
 {
-	"name": "vegan-ipsum",
-	"version": "2.0.0",
-	"description": "Generates passages of vegan-themed placeholder text suitable for use in web pages, graphics, and more. Works in the browser, NodeJS, and React Native.",
-	"author": "Vijay Hardaha (http://github.com/vijayhardaha)",
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/vijayhardaha/node-vegan-ipsum.git"
-	},
-	"homepage": "https://github.com/vijayhardaha/node-vegan-ipsum#readme",
-	"bugs": {
-		"url": "https://github.com/vijayhardaha/node-vegan-ipsum/issues"
-	},
-	"main": "dist/index.cjs",
-	"module": "dist/index.mjs",
-	"exports": {
-		".": {
-			"types": "./types/src/index.d.ts",
-			"import": "./dist/index.mjs",
-			"require": "./dist/index.cjs"
-		},
-		"./bin/vegan-ipsum.bin.js": {
-			"require": "./dist/bin/vegan-ipsum.bin.cjs"
-		}
-	},
-	"bin": {
-		"vegan-ipsum": "dist/bin/vegan-ipsum.bin.cjs"
-	},
-	"types": "types/src/index.d.ts",
-	"scripts": {
-		"clean-build": "rm -rf types && rm -rf dist",
-		"check-types": "tsc --noEmit",
-		"build:types": "rm -rf types && tsc --emitDeclarationOnly",
-		"build:js": "vite build",
-		"build:bin": "vite build --config vitebin.config.ts",
-		"build:exec": "chmod +x dist/bin/vegan-ipsum.bin.cjs",
-		"build": "pnpm run clean-build && pnpm run build:js && pnpm run build:bin && pnpm run build:exec",
-		"test:local": "node tests/local/test-cjs.js && node tests/local/test-esm.mjs && node tests/local/test-interop-cjs.js",
-		"lint": "eslint src --ext .ts,.js",
-		"lint:fix": "eslint src --ext --fix .ts,.js",
-		"format": "prettier --write \"**/*.{ts,js,.mjs,.cjs,json,md}\"",
-		"format:check": "prettier --check \"**/*.{ts,js,.mjs,.cjs,json,md}\"",
-		"test": "vitest run --coverage",
-		"test:watch": "vitest",
-		"release": "pnpm run build && release-it",
-		"release:dry": "pnpm run build && release-it --dry-run",
-		"prepare": "husky"
-	},
-	"keywords": [
-		"cli",
-		"filler",
-		"generator",
-		"ipsum",
-		"lorem",
-		"lorem-ipsum",
-		"node",
-		"placeholder",
-		"placeholder-text",
-		"plant-based",
-		"typescript",
-		"vegan",
-		"vegan-ipsum"
-	],
-	"engines": {
-		"node": ">= 20.x",
-		"npm": ">= 9.x"
-	},
-	"devDependencies": {
-		"@commitlint/cli": "^20.4.2",
-		"@commitlint/config-conventional": "^20.4.2",
-		"@eslint/js": "^9.39.3",
-		"@types/node": "^25.3.3",
-		"@types/random-seed": "^0.3.5",
-		"@typescript-eslint/eslint-plugin": "^8.56.1",
-		"@typescript-eslint/parser": "^8.56.1",
-		"@vitest/coverage-v8": "4.0.18",
-		"eslint": "^9.39.3",
-		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-prettier": "^5.5.5",
-		"globals": "^17.4.0",
-		"husky": "^9.1.7",
-		"nock-exec": "^0.1.0",
-		"prettier": "^3.8.1",
-		"release-it": "^19.2.4",
-		"rollup": "^4.59.0",
-		"typescript": "^5.9.3",
-		"vite": "^7.3.1",
-		"vite-plugin-dts": "^4.5.4",
-		"vitest": "^4.0.18"
-	},
-	"dependencies": {
-		"commander": "^14.0.3"
-	},
-	"packageManager": "pnpm@10.30.3"
+  "name": "vegan-ipsum",
+  "version": "2.0.0",
+  "description": "Generates passages of vegan-themed placeholder text suitable for use in web pages, graphics, and more. Works in the browser, NodeJS, and React Native.",
+  "scripts": {
+    "clean-build": "rm -rf types && rm -rf dist",
+    "build:types": "rm -rf types && tsc --emitDeclarationOnly",
+    "build:js": "vite build",
+    "build:bin": "vite build --config vitebin.config.ts",
+    "build:exec": "chmod +x dist/bin/vegan-ipsum.bin.cjs",
+    "build": "pnpm run clean-build && pnpm run build:js && pnpm run build:bin && pnpm run build:exec",
+    "lint": "eslint . --ext .ts,.tsx,.js,.mjs",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.mjs --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,mjs,json,css,md,yml}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,json,css,md,yml}\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:local": "node tests/local/test-cjs.js && node tests/local/test-esm.mjs && node tests/local/test-interop-cjs.js",
+    "tsc": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build",
+    "release": "release-it",
+    "release:dry": "release-it --dry-run",
+    "prepare": "husky"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Vijay Hardaha",
+    "url": "http://github.com/vijayhardaha"
+  },
+  "homepage": "https://github.com/vijayhardaha/node-vegan-ipsum#readme",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vijayhardaha/node-vegan-ipsum.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vijayhardaha/node-vegan-ipsum/issues"
+  },
+  "bin": {
+    "vegan-ipsum": "dist/bin/vegan-ipsum.bin.cjs"
+  },
+  "files": [
+    "dist",
+    "src",
+    "types",
+    "LICENSE",
+    "README.md"
+  ],
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "types/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/src/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./bin/vegan-ipsum.bin.js": {
+      "require": "./dist/bin/vegan-ipsum.bin.cjs"
+    }
+  },
+  "keywords": [
+    "cli",
+    "filler",
+    "generator",
+    "ipsum",
+    "lorem",
+    "lorem-ipsum",
+    "node",
+    "placeholder",
+    "placeholder-text",
+    "plant-based",
+    "typescript",
+    "vegan",
+    "vegan-ipsum"
+  ],
+  "engines": {
+    "node": ">= 20.x",
+    "npm": ">= 9.x"
+  },
+  "dependencies": {
+    "commander": "^14.0.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@eslint/compat": "^2.0.4",
+    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/js": "^9.39.4",
+    "@types/node": "^25.5.2",
+    "@types/random-seed": "^0.3.5",
+    "@typescript-eslint/eslint-plugin": "^8.58.0",
+    "@typescript-eslint/parser": "^8.58.0",
+    "@vijayhardaha/dev-config": "^1.0.10",
+    "@vitest/coverage-v8": "4.1.2",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.5.5",
+    "globals": "^17.4.0",
+    "husky": "^9.1.7",
+    "nock-exec": "^0.1.0",
+    "prettier": "^3.8.1",
+    "release-it": "^19.2.4",
+    "rollup": "^4.60.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.3",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.1.2"
+  }
 }
