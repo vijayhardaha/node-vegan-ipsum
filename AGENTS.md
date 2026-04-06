@@ -99,7 +99,7 @@ Pre-commit hooks automatically run type check, lint, and format checks.
 
 **Before preparing git.md (after each task):**
 
-1. Run `pnpm run types` - Type check
+1. Run `pnpm run tsc` - Type check
 2. Run `pnpm run format:check` - Format check
 3. Run `pnpm run lint` - ESLint check
 
