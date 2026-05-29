@@ -14,6 +14,7 @@ class VeganIpsum {
    * @param {GeneratorOptions} options - Configuration options for the text generator.
    * @param {LoremFormat} format - The format of the generated text (e.g., plain or HTML).
    * @param {string} [suffix] - A custom line ending or suffix for the generated text.
+   *
    * @throws {Error} If the provided format is invalid.
    */
   constructor(
@@ -49,6 +50,7 @@ class VeganIpsum {
    * Formats a single string based on the specified format (e.g., wraps in HTML tags if needed).
    *
    * @param {string} str - The string to format.
+   *
    * @returns {string} The formatted string.
    */
   public formatString(str: string): string {
@@ -62,6 +64,7 @@ class VeganIpsum {
    * Formats an array of strings based on the specified format.
    *
    * @param {string[]} strings - The array of strings to format.
+   *
    * @returns {string[]} The array of formatted strings.
    */
   public formatStrings(strings: string[]): string[] {
@@ -72,6 +75,7 @@ class VeganIpsum {
    * Generates a specified number of words and formats them.
    *
    * @param {number} [num] - The number of words to generate. If not provided, a random number is used.
+   *
    * @returns {string} A formatted string of generated words.
    */
   public generateWords(num?: number): string {
@@ -82,6 +86,7 @@ class VeganIpsum {
    * Generates a specified number of sentences and formats them.
    *
    * @param {number} [num] - The number of sentences to generate. If not provided, a random number is used.
+   *
    * @returns {string} A formatted string of generated sentences.
    */
   public generateSentences(num?: number): string {
@@ -92,6 +97,7 @@ class VeganIpsum {
    * Generates a specified number of paragraphs and formats them.
    *
    * @param {number} num - The number of paragraphs to generate.
+   *
    * @returns {string} A formatted string of generated paragraphs.
    */
   public generateParagraphs(num: number): string {

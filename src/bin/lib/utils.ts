@@ -8,6 +8,7 @@ import { SUPPORTED_PLATFORMS } from '../../constants';
  * Retrieves the current process platform.
  *
  * @returns {string} The process platform (e.g., "darwin", "win32", "linux").
+ *
  * @throws {Error} If the platform cannot be determined.
  */
 const getPlatform = (): string => {
@@ -22,6 +23,7 @@ const getPlatform = (): string => {
  * Checks if the given platform is supported.
  *
  * @param {string} platform - The process platform (e.g., "darwin", "win32", "linux").
+ *
  * @returns {boolean} `true` if the platform is supported, otherwise `false`.
  */
 const isSupportedPlatform = (platform: string): boolean => {
@@ -32,6 +34,7 @@ const isSupportedPlatform = (platform: string): boolean => {
  * Retrieves the appropriate copy command for the specified platform.
  *
  * @param {string} platform - The process platform (e.g., "darwin", "win32", "linux").
+ *
  * @returns {string} The copy command for the specified platform.
  */
 const getCopyCommand = (platform: string = ''): string => {
@@ -50,7 +53,9 @@ const getCopyCommand = (platform: string = ''): string => {
  * Copies the provided text to the clipboard using the platform's native command.
  *
  * @param {string} text - The text to copy to the clipboard.
+ *
  * @returns {Promise<string>} A promise that resolves with the copied text, or rejects with an error.
+ *
  * @throws {Error} If the platform is not supported or if the copy command fails.
  */
 const copyToClipboard = (text: string): Promise<string> => {

@@ -64,6 +64,7 @@ class Generator {
    * Creates an instance of the `Generator` class.
    *
    * @param {GeneratorOptions} options - Configuration options for the generator.
+   *
    * @throws {Error} If the minimum exceeds the maximum in the provided bounds.
    */
   constructor({
@@ -99,6 +100,7 @@ class Generator {
    *
    * @param {number} min - The minimum value (inclusive).
    * @param {number} max - The maximum value (inclusive).
+   *
    * @returns {number} A random integer between `min` and `max`.
    */
   public generateRandomInteger(min: number, max: number): number {
@@ -109,6 +111,7 @@ class Generator {
    * Generates a random sequence of words.
    *
    * @param {number} [num] - The number of words to generate. If not provided, a random number is used.
+   *
    * @returns {string} A string of randomly generated words.
    */
   public generateRandomWords(num?: number): string {
@@ -125,6 +128,7 @@ class Generator {
    * Generates a random sentence.
    *
    * @param {number} [num] - The number of words in the sentence. If not provided, a random number is used.
+   *
    * @returns {string} A randomly generated sentence.
    */
   public generateRandomSentence(num?: number): string {
@@ -135,6 +139,7 @@ class Generator {
    * Generates a random paragraph.
    *
    * @param {number} [num] - The number of sentences in the paragraph. If not provided, a random number is used.
+   *
    * @returns {string} A randomly generated paragraph.
    */
   public generateRandomParagraph(num?: number): string {

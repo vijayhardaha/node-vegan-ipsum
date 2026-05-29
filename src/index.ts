@@ -16,24 +16,28 @@ import VeganIpsum from './lib/VeganIpsum';
 export interface VeganIpsumParams {
   /**
    * Number of units to generate (e.g., paragraphs, sentences, or words).
+   *
    * @default 1
    */
   count?: number;
 
   /**
    * Format of the generated text (e.g., plain text or HTML).
+   *
    * @default FORMAT_PLAIN
    */
   format?: LoremFormat;
 
   /**
    * Minimum number of sentences per paragraph.
+   *
    * @default 3
    */
   paragraphLowerBound?: number;
 
   /**
    * Maximum number of sentences per paragraph.
+   *
    * @default 7
    */
   paragraphUpperBound?: number;
@@ -45,30 +49,35 @@ export interface VeganIpsumParams {
 
   /**
    * Minimum number of words per sentence.
+   *
    * @default 5
    */
   sentenceLowerBound?: number;
 
   /**
    * Maximum number of words per sentence.
+   *
    * @default 15
    */
   sentenceUpperBound?: number;
 
   /**
    * Unit type for the generated text (e.g., paragraphs, sentences, or words).
+   *
    * @default UNIT_SENTENCES
    */
   units?: LoremUnit;
 
   /**
    * Custom word list to use for generating text.
+   *
    * @default WORDS
    */
   words?: string[];
 
   /**
    * Suffix to append to the generated text.
+   *
    * @default ""
    */
   suffix?: string;
@@ -78,6 +87,17 @@ export interface VeganIpsumParams {
  * Generates vegan ipsum text based on the provided parameters.
  *
  * @param params - Configuration options for generating vegan ipsum text.
+ * @param params.count
+ * @param params.random
+ * @param params.format
+ * @param params.paragraphLowerBound
+ * @param params.paragraphUpperBound
+ * @param params.sentenceLowerBound
+ * @param params.sentenceUpperBound
+ * @param params.units
+ * @param params.words
+ * @param params.suffix
+ *
  * @returns Generated vegan ipsum text as a string.
  */
 const veganIpsum = ({

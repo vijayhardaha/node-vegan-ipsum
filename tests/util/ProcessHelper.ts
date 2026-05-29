@@ -43,6 +43,7 @@ class ProcessHelper {
    * tests to simulate a missing/unknown platform.
    *
    * @param {string | undefined} [platform] - The platform string to apply (e.g. 'win32') or `undefined`.
+   *
    * @example
    * const p = new ProcessHelper();
    * p.setPlatform('darwin');

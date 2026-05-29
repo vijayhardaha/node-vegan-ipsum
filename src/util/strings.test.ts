@@ -79,6 +79,7 @@ describe('strings utilities', () => {
   describe('fillArrayWith', () => {
     /**
      * Helper function to generate a string.
+     *
      * @returns A constant string "string".
      */
     const makeStr = (): string => 'string';
