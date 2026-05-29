@@ -8,30 +8,30 @@
 - **Lang**: TypeScript (strict mode)
 - **Runtime**: Node.js >= 20
 - **Build Tool**: Vite
-- **Package Manager**: pnpm
+- **Package Manager**: bun
 
 ## Available Commands
 
 ```bash
 # Development
-pnpm run dev            # Start development server
+bun run dev            # Start development server
 
 # Building
-pnpm run build          # Clean, build types, JS (ESM/CJS), and CLI binary
-pnpm run build:js       # Library build via vite.config.ts
-pnpm run build:bin      # CLI build via vitebin.config.ts
+bun run build          # Clean, build types, JS (ESM/CJS), and CLI binary
+bun run build:js       # Library build via vite.config.ts
+bun run build:bin      # CLI build via vitebin.config.ts
 
 # Testing
-pnpm run test           # Run tests (Vitest)
-pnpm run test:local     # Run manual interop checks (tests/local/)
+bun run test           # Run tests (Vitest)
+bun run test:local     # Run manual interop checks (tests/local/)
 
 # Linting & Formatting
-pnpm run lint           # ESLint checks
-pnpm run format         # Prettier auto-fix
-pnpm run format:check   # Prettier validation
+bun run lint           # ESLint checks
+bun run format         # Prettier auto-fix
+bun run format:check   # Prettier validation
 
 # Type Checking
-pnpm run types          # TypeScript type check
+bun run types          # TypeScript type check
 ```
 
 ## Project Architecture
@@ -99,9 +99,9 @@ Pre-commit hooks automatically run type check, lint, and format checks.
 
 **Before preparing git.md (after each task):**
 
-1. Run `pnpm run tsc` - Type check
-2. Run `pnpm run format:check` - Format check
-3. Run `pnpm run lint` - ESLint check
+1. Run `bun run tsc` - Type check
+2. Run `bun run format:check` - Format check
+3. Run `bun run lint` - ESLint check
 
 **After completing a task:**
 
