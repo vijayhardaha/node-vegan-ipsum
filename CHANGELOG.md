@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.2] - 2026-05-29
+
+### Changed
+
+- Migrated package manager from pnpm to bun across all tooling
+- Moved contributing guide into `docs/` directory; removed CLAUDE.md and copilot-instructions symlinks
+- Simplified pre-commit hook to run format check only; added pre-push hook with lint and type check
+- Updated editorconfig, gitignore, and prettierignore with expanded entries
+- Reordered lint and format script flags for consistency
+
+### Fixed
+
+- Fixed JSDoc lint errors across source and test files
+- Removed `baseUrl` from tsconfig (handled by shared dev-config)
+- Updated `vite-plugin-dts` output option for v5 compatibility
+
 ## [2.0.1] - 2026-04-06
 
 ### Changed
@@ -89,7 +105,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of node-vegan-ipsum
 
-[Unreleased]: https://github.com/vijayhardaha/node-vegan-ipsum/compare/v2.0.1...HEAD
+[Unreleased]: https://github.com/vijayhardaha/node-vegan-ipsum/compare/v2.0.2...HEAD
+[2.0.2]: https://github.com/vijayhardaha/node-vegan-ipsum/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/vijayhardaha/node-vegan-ipsum/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/vijayhardaha/node-vegan-ipsum/releases/tag/v2.0.0
 [1.0.4]: https://github.com/vijayhardaha/node-vegan-ipsum/compare/v1.0.3...v1.0.4
