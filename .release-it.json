@@ -9,8 +9,8 @@
   "npm": { "publish": true, "publishArgs": ["--access=public"], "ignoreVersion": true },
   "github": { "releaseName": "Release v${version}" },
   "hooks": {
-    "before:init": ["pnpm run tsc", "pnpm run format:check", "pnpm run lint", "pnpm run test"],
-    "before:git:commit": ["pnpm run build"],
+    "before:init": ["bun run tsc", "bun run format:check", "bun run lint", "bun run test"],
+    "before:git:commit": ["bun run build"],
     "before:release": "echo \"Publishing v${version}...\"",
     "after:release": "echo \"Released v${version} successfully! 🎉\"",
     "after:git:release": "echo \"Git tag v${version} pushed!\""

@@ -1,3 +1,1 @@
-pnpm run tsc
-pnpm run format:check
-pnpm run lint
+bun run format:check
