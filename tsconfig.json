@@ -10,7 +10,6 @@
 {
   "extends": "@vijayhardaha/dev-config/tsconfig",
   "compilerOptions": {
-    "baseUrl": "./",
     "paths": { "@/*": ["./src/*"] },
     "target": "esnext",
     "module": "esnext",

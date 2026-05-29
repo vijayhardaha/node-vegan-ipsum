@@ -40,5 +40,5 @@ export default defineConfig({
   // Plugins
   // -------------------------
   // Emit declarations into `types/` and create a types entry
-  plugins: [dts({ insertTypesEntry: true, outDir: 'types' })],
+  plugins: [dts({ insertTypesEntry: true, outDirs: 'types' })],
 });
