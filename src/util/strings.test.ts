@@ -80,7 +80,7 @@ describe('strings utilities', () => {
     /**
      * Helper function to generate a string.
      *
-     * @returns A constant string "string".
+     * @returns {string} A constant string "string".
      */
     const makeStr = (): string => 'string';
 

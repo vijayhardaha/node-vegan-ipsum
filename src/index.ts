@@ -86,19 +86,9 @@ export interface VeganIpsumParams {
 /**
  * Generates vegan ipsum text based on the provided parameters.
  *
- * @param params - Configuration options for generating vegan ipsum text.
- * @param params.count
- * @param params.random
- * @param params.format
- * @param params.paragraphLowerBound
- * @param params.paragraphUpperBound
- * @param params.sentenceLowerBound
- * @param params.sentenceUpperBound
- * @param params.units
- * @param params.words
- * @param params.suffix
+ * @param {VeganIpsumParams} params - Configuration options for generating vegan ipsum text.
  *
- * @returns Generated vegan ipsum text as a string.
+ * @returns {string} Generated vegan ipsum text as a string.
  */
 const veganIpsum = ({
   count = 1,

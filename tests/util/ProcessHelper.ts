@@ -62,10 +62,9 @@ class ProcessHelper {
    * Set the global `navigator` object for the duration of a test.
    * Passing no argument sets `navigator` to `undefined`.
    *
-   * @param obj - The object to set as `global.navigator` or `undefined`.
+   * @param {unknown} [obj] - The object to set as `global.navigator` or `undefined`.
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public setNavigator(obj?: any) {
+  public setNavigator(obj?: unknown) {
     Object.defineProperty(global, 'navigator', { value: obj, configurable: true, writable: true });
   }
 
